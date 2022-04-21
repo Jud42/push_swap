@@ -6,64 +6,62 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/15 18:24:52 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:09:16 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "../so_long/libft/libft.h"
+#include "push_swap.h"
 
-int	*tab_split(char *s, int *size)
+/*void	free_stack(t_stack *stack)
+{
+	
+}*/
+
+List	tab_split(char *s, List stack)
 {
 	char	**tab_s;
-	int		*tab_i;
 	int		i;
 
 	i = -1;
 	tab_s = ft_split(s, ' ');
 	while (tab_s[++i])
-		;
-	tab_i = (int *)malloc(sizeof(int) * i);
-	*size = i;
-	i = -1;
-	while (tab_s[++i])
-		tab_i[i] = ft_atoi(tab_s[i]);
-	return (tab_i);
+		stack = insert_back_list(stack, ft_atoi(tab_s[i]));
+	return (stack);
 }
 
-int	*tab(char **av, int ac)
+List	tab(char **av, List stack)
 {
-	int *ret;
 	int	i;
-	int j;
-
-	ret = (int *)malloc(sizeof(int) * (ac - 1));
+	
 	i = 1;
-	j = 0;
 	while (av[i] != NULL)
-		ret[j++] = ft_atoi(av[i++]);
-	return (ret);
+		stack = insert_back_list(stack, ft_atoi(av[i++]));
+	return (stack);
 }
 
 int	main(int argc, char **argv)
 {
-	int *stackA;
-	int	size;
+	List	stackA;
 	int	i;
 	
 	i = -1;
-	size = 0;
+	stackA = NULL;
+	if (argc == 1)
+		exit(EXIT_FAILURE);
 	if (ft_strchr(argv[1], ' '))
-		stackA = tab_split(argv[1], &size);
+		stackA = tab_split(argv[1], stackA);
 	else
-		stackA = tab(argv, argc);
-	printf("	stackA	|	stackB\n");
-	if (size > 0)
-		while (++i < size)
-			printf("	%d\n", stackA[i]);
-	else
-		while (++i < argc - 1)
-			printf("	%d\n", stackA[i]);
-	free(stackA);
+		stackA = tab(argv, stackA);
+	if (list_size(stackA) == 0)
+		exit (EXIT_FAILURE);
+	ft_printf("sizelist => %d\n", list_size(stackA));
+	ft_printf("	stackA\n");
+	print_list(stackA);
+	stackA = delete_back_list(stackA);
+	print_list(stackA);
+	stackA = delete_front_list(stackA);
+	print_list(stackA);
+	stackA = clear_list(stackA);
+	print_list(stackA);
 	return (0);
 }
