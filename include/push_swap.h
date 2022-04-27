@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:33:11 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/21 22:09:14 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/27 19:17:07 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,20 @@
 	int	size;
 }	t_stack;*/
 
-typedef struct ListElement{
+typedef struct s_node{
 	int	value;
-	struct ListElement *next;
-}ListElement, *List;
+	struct s_node *next;
+	int	size;
+}	t_node;
 
-int		empty_list(List li);
-int		list_size(List li);
-void	print_list(List li);
-List	insert_back_list(List li, int nbr);
-List	insert_front_list(List li, int nbr);
-List	delete_back_list(List li);
-List	delete_front_list(List li);
-List	clear_list(List li);
-/*void	swap_a(t_stack *stack);
-void	swap_b(t_stack *stack);
+void		list_size(t_node *li);
+void	print_list(t_node *li);
+void	insert_back_list(t_node **li, int nbr);
+/*t_node	insert_front_node(t_node li, int nbr);
+t_node	delete_back_list(t_node li);
+t_node	delete_front_node(t_node li);
+t_node	clear_list(t_node li);
+t_node	swap_a(t_node stack_A);
+t_node	swap_b(t_node stack_B);
 */
-
 # endif

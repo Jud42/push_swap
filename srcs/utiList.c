@@ -1,81 +1,71 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utiList.c                                          :+:      :+:    :+:   */
+/*   utit_node.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/21 22:09:18 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/27 22:27:22 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	empty_list(List li)
+void	list_size(t_node *li)
+{
+	t_node	*actual = li;	
+	li->size = 0;
+	if (li)
+		while (actual != NULL)
+		{
+			li->size++;
+			actual = actual->next;
+		}
+	free(actual);
+	actual = NULL;
+}
+
+void	print_list(t_node *li)
 {
 	if (!li)
-	{
-		ft_printf("Empty list\n");
-		return (true);
-	}
-	return (false);
-}
-
-int	list_size(List li)
-{
-	int	i;
-	
-	i = 0;
-	if (!empty_list(li))
-		while (li != NULL)
-		{
-			i++;
-			li = li->next;
-		}
-	return (i);
-}
-
-void	print_list(List li)
-{
-	if (empty_list(li))
 		return ;
-	while (li != NULL)
-	{
-		ft_printf("	%d\n", li->value);
-		li = li->next;
-	}
-	ft_printf("\n");
-}
-
-List	insert_back_list(List	li, int	nbr)
-{
-
-	ListElement	*element;
-
-	element = malloc(sizeof(*element));
-	if (!element)
-	{
-		ft_printf("Allocation element failed\n");
-		exit(EXIT_FAILURE);
-	}
-	element->value = nbr;
-	element->next = NULL;
-	if (empty_list(li))
-		return (element);
-
-	ListElement	*temp;
+	t_node	*temp;
 
 	temp = li;
-	while (temp->next != NULL)
+	while (temp != NULL)
+	{
+		ft_printf("	%d\n", temp->value);
 		temp = temp->next;
-	temp->next = element;
-	return (li);
+	}
 }
 
-List	insert_front_list(List	li, int	nbr)
+void	insert_back_list(t_node	**li, int	nbr)
 {
-	ListElement	*element;
+	t_node	*news = malloc(sizeof(*news));
+	if (news == NULL)
+	{
+		ft_printf("Allocation element failed\n");
+		exit(1);
+	}
+	news->value = nbr;
+	news->next = NULL;
+	if (*li == NULL)
+	{
+		*li = news;
+		return ;
+	}
+	t_node	*temp;
+
+	temp = *li;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = news;
+}
+
+/*t_node	insert_front_node(t_node	li, int	nbr)
+{
+	t_node	*element;
 
 	element = malloc(sizeof(*element));
 	if (!element)
@@ -90,7 +80,7 @@ List	insert_front_list(List	li, int	nbr)
 	return (element);
 }
 
-List	delete_back_list(List	li)
+t_node	delete_back_list(t_node	li)
 {
 	if (empty_list(li))
 		return NULL;
@@ -100,8 +90,8 @@ List	delete_back_list(List	li)
 		li = NULL;
 		return NULL;
 	}
-	ListElement	*temp;
-	ListElement	*before;
+	t_node	*temp;
+	t_node	*before;
 
 	temp = li;
 	before = li;
@@ -116,11 +106,11 @@ List	delete_back_list(List	li)
 	return (li);
 }
 
-List	delete_front_list(List	li)
+t_node	delete_front_node(t_node	li)
 {
 	if (empty_list(li))
 		return NULL;
-	ListElement	*element;
+	t_node	*element;
 
 	element = malloc(sizeof(*element));
 	if (!element)
@@ -134,11 +124,11 @@ List	delete_front_list(List	li)
 	return (element);
 }
 
-List	clear_list(List li)
+t_node	clear_list(t_node li)
 {
 	if (empty_list(li))
 		return NULL;
 	while (li != NULL)
-		li = delete_front_list(li);
+		li = delete_front_node(li);
 	return (li);
-}
+}*/
