@@ -6,13 +6,14 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 18:23:39 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/27 21:36:17 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:22:07 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "libft.h"
+
 int	ft_isdigit(int c)
 {
-	if (c >= 0 && c <= 9)
-		return (1);
+	if (c >= 48 && c <= 57)
+		return (!0);
 	return (0);
 }
