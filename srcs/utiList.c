@@ -6,100 +6,112 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/28 14:38:12 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:52:51 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	list_size(t_node *li)
+t_node	*get_new_node(int	x)
 {
-	t_node	*actual = li;	
-	li->size = 0;
-	if (li)
+	t_node	*new;
+
+	new = malloc(sizeof(*new));
+	if (!new)
+	{
+		ft_printf("Error\n Allocation memory failure\n");
+		exit(1);
+	}
+	new->value = x;
+	new->next = NULL;
+	new->prev = NULL;
+	return (new);
+}
+
+void	list_size(t_list *li)
+{
+	t_node	*actual;
+   	
+	actual = li->head;
+	li->head->size = 0;
+	if (li->head)
+	{
 		while (actual != NULL)
 		{
-			li->size++;
+			li->head->size++;
 			actual = actual->next;
 		}
+	}
 	free(actual);
 	actual = NULL;
 }
 
-void	print_list(t_node *li)
+void	print_list(t_list *li)
 {
-	if (li == NULL)
+	if (li->head == NULL)
 	{
 		ft_printf("Empty list\n");
 		return ;
 	}
 	t_node	*temp;
 
-	temp = li;
+	temp = li->head;
 	while (temp != NULL)
 	{
-		ft_printf("	%d\n", temp->value);
+		ft_printf("	%d\n", temp->value); // I move just the pointer temp not li->head
 		temp = temp->next;
 	}
 	ft_printf("\n");
 }
 
-void	insert_back_list(t_node	**li, int	nbr)
+void	insert_back_list(t_list	*li, int	nbr)
 {
-	t_node	*news = malloc(sizeof(*news));
-	if (news == NULL)
+	t_node	*news; 
+	
+	news = get_new_node(nbr);
+	if (li->head == NULL)
 	{
-		ft_printf("Allocation element failed\n");
-		exit(1);
-	}
-	news->value = nbr;
-	news->next = NULL;
-	if (*li == NULL)
-	{
-		*li = news;
+		li->head = news;
 		return ;
 	}
 	t_node	*temp;
 
-	temp = *li;
+	temp = li->head;
 	while (temp->next != NULL)
 		temp = temp->next;
+	news->prev = temp->next;
 	temp->next = news;
 }
 
-void	insert_front_node(t_node	**li, int	nbr)
+void	insert_front_list(t_list	*li, int	nbr)
 {
-	t_node	*element;
+	t_node	*news;
 
-	element = malloc(sizeof(*element));
-	if (!element)
+	news = get_new_node(nbr);
+	if (li->head != NULL)
 	{
-		ft_printf("Allocation element failed\n");
-		exit(1);
+		news->next = li->head;
+		li->head = news;
+		return ;
 	}
-	element->value = nbr;
-	element->next = NULL;
-	if (*li != NULL)
-		element->next = *li;
-	*li = element;
+	li->head = news;
 }
 
-void	delete_back_list(t_node	**li)
+void	delete_back_list(t_list	*li)
 {
-	if (!*li)
+	if (!li->head)
 		return ;
-	t_node	*temp;
- 
-	temp = *li;
-	if (temp->next == NULL)
+	else if (li->head->next == NULL)
 	{
-		free(*li);
-		*li = NULL;
+		free(li->head);
+		li->head = NULL;
 		return ;
 	}
+	t_node	*temp;
 	t_node	*before;
 
-	before = *li;
+	temp = li->head;
+	before = li->head;
 	while(temp->next != NULL)
 	{
 		before = temp;
@@ -110,31 +122,28 @@ void	delete_back_list(t_node	**li)
 	temp = NULL;
 }
 
-void	delete_front_list(t_node	**li)
+void	delete_front_list(t_list	*li)
 {
-	if (!*li)
+	if (!li->head)
 		return ;
-	t_node	*element;
-
-	element = malloc(sizeof(*element));
-	if (!element)
+	if (li->head->next == NULL)
 	{
-		ft_printf("Allocation element failed\n");
-		exit(EXIT_FAILURE);
+		free(li->head);
+		li->head = NULL;
+		return;
 	}
 	t_node	*temp;
 
-	temp = *li;
-	element = temp->next;
-	*li = element;
-	free(temp);
-	temp = NULL;
+	temp = li->head->next;
+	free(temp->prev);
+	temp->prev = NULL;
+	li->head = temp;
 }
 
-void	clear_list(t_node **li)
+void	clear_list(t_list *li)
 {
-	if (!*li)
+	if (!li)
 		return ;
-	while (*li != NULL)
+	while (li->head != NULL)
 		delete_back_list(li);
 }

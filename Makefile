@@ -1,7 +1,7 @@
 
 NAME		= push_swap
 LIB_PRINTF_DIR		= ./libft/ft_printf
-SRCS	= mainlist.c	utiList.c
+SRCS	= mainlist.c	utiList.c	sa.c
 DIR_S	= srcs
 DIR_O	= temp
 RM 	= rm -rf

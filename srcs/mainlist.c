@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/28 18:18:31 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/04/29 13:52:49 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	check_alpha(char	*s)
 }
 /*---------------------------------*/
 
-void	tab_split(char *s, t_node **stack)
+void	tab_split(char *s, t_list	*stack)
 {
 	char	**tab_s;
 	int		i;
@@ -60,7 +60,7 @@ void	tab_split(char *s, t_node **stack)
 }
 /*-----------------------------------*/
 
-void	tab(char **av, t_node **stack)
+void	tab(char **av, t_list	*stack)
 {
 	int	i;
 	
@@ -76,23 +76,22 @@ void	tab(char **av, t_node **stack)
 
 int	main(int argc, char **argv)
 {
-	t_node	*stackA = NULL;
+	t_list	stack_a;
+	t_list	stack_b;
 
+	stack_a.head = NULL; 
+	stack_b.head = NULL;
 	if (argc == 1)
 		exit(EXIT_FAILURE);
 	if (ft_strchr(argv[1], ' '))
-		tab_split(argv[1], &stackA);
+		tab_split(argv[1], &stack_a);
 	else
-		tab(argv, &stackA);
-	list_size(stackA);
-	if (stackA->size == 0)
+		tab(argv, &stack_a);
+	list_size(&stack_a);
+	if (stack_a.head->size == 0)
 		exit (EXIT_FAILURE);
-	ft_printf("sizelist => %d\n", stackA->size);
-	ft_printf("	stackA\n	-------\n");
-	print_list(stackA);
-	//clear_list(&stackA);
-	//print_list(head);
-	//stackA = swap_a(stackA);
-	//print_list(stackA);
+	ft_printf("sizelist => %d\n", stack_a.head->size);
+	ft_printf("	stack_a\n	-------\n");
+	print_list(&stack_a);
 	return (0);
 }
