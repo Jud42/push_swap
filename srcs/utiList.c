@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/29 13:52:51 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/06 19:56:05 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,25 @@ t_node	*get_new_node(int	x)
 	return (new);
 }
 
+/*void	last_node(t_list	*li)
+{
+	t_node	*temp;
+
+	temp = li->head->next;
+	ft_printf("test = %d\n, prev = %d\n", temp->value, temp->prev->value);
+}*/
+
 void	list_size(t_list *li)
 {
 	t_node	*actual;
    	
 	actual = li->head;
-	li->head->size = 0;
+	li->size = 0;
 	if (li->head)
 	{
 		while (actual != NULL)
 		{
-			li->head->size++;
+			li->size++;
 			actual = actual->next;
 		}
 	}
@@ -79,8 +87,9 @@ void	insert_back_list(t_list	*li, int	nbr)
 	temp = li->head;
 	while (temp->next != NULL)
 		temp = temp->next;
-	news->prev = temp->next;
+	news->prev = temp;
 	temp->next = news;
+	li->last = temp->next;
 }
 
 void	insert_front_list(t_list	*li, int	nbr)
@@ -118,6 +127,7 @@ void	delete_back_list(t_list	*li)
 		temp = temp->next;
 	}
 	before->next = NULL;
+	li->last = before;
 	free(temp);
 	temp = NULL;
 }

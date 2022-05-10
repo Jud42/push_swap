@@ -6,15 +6,15 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:13:27 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/28 18:18:27 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/04 23:11:09 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
-	unsigned int	conv;
-	int				negative;
+	long int	conv;
+	int		negative;
 
 	conv = 0;
 	negative = 1;

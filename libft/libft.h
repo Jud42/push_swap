@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:27:43 by rmamison          #+#    #+#             */
-/*   Updated: 2022/04/09 11:54:06 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/04 22:28:21 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -34,7 +34,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_itoa(int n);
-int		ft_atoi(const char *str);
+long int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 void	ft_bzero(void *s, size_t n);
