@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:48:44 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/10 20:58:34 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:50:05 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -69,4 +69,39 @@ void	mini_sort(t_list	*li)
 	}
 	swap_stack(head, head->next, "sa");
 	//rotate_stack(li, "ra");
+}
+
+void	test(t_list	*a, t_list *b)
+{
+	t_node	*a_h;
+	t_node	*a_l;
+	//t_node	*st_b;
+
+	a_h = a->head;
+	middle_list(a); //initialize midpoint
+	while (a_h && a_h != a->mid)
+	{
+		if (a_h->value > a_h->next->value)
+			swap_stack(a_h, a_h->next, "sa");
+		if (a_h->value < a->mid->value)
+		{
+			push_stack(b, a, "pb");
+			a_h = a->head;
+		}
+		else
+			a_h = a_h->next;
+	}
+	print_list(a, b);
+	a_l = a->last;
+	while (a_l && a_l != a->mid)
+	{
+		if (a_l->value < a->mid->value)
+			reverse_rotate(a, "rra");
+		else
+		{
+			a_l = a_l->prev;
+			ft_printf("%d\n", a_l->value);
+		}
+	}
+	print_list(a, b);
 }

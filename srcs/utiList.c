@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/06 19:56:05 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:50:11 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ t_node	*get_new_node(int	x)
 	return (new);
 }
 
-/*void	last_node(t_list	*li)
-{
-	t_node	*temp;
-
-	temp = li->head->next;
-	ft_printf("test = %d\n, prev = %d\n", temp->value, temp->prev->value);
-}*/
-
 void	list_size(t_list *li)
 {
 	t_node	*actual;
@@ -52,24 +44,6 @@ void	list_size(t_list *li)
 	}
 	free(actual);
 	actual = NULL;
-}
-
-void	print_list(t_list *li)
-{
-	if (li->head == NULL)
-	{
-		ft_printf("Empty list\n");
-		return ;
-	}
-	t_node	*temp;
-
-	temp = li->head;
-	while (temp != NULL)
-	{
-		ft_printf("	%d\n", temp->value); // I move just the pointer temp not li->head
-		temp = temp->next;
-	}
-	ft_printf("\n");
 }
 
 void	insert_back_list(t_list	*li, int	nbr)
@@ -99,6 +73,7 @@ void	insert_front_list(t_list	*li, int	nbr)
 	news = get_new_node(nbr);
 	if (li->head != NULL)
 	{
+		//li->head->prev = news;
 		news->next = li->head;
 		li->head = news;
 		return ;
@@ -145,9 +120,9 @@ void	delete_front_list(t_list	*li)
 	t_node	*temp;
 
 	temp = li->head->next;
-	free(temp->prev);
-	temp->prev = NULL;
 	li->head = temp;
+	temp->prev = NULL;
+	free(temp->prev);
 }
 
 void	clear_list(t_list *li)
@@ -156,4 +131,55 @@ void	clear_list(t_list *li)
 		return ;
 	while (li->head != NULL)
 		delete_back_list(li);
+}
+
+void	max_value(t_list	*li)
+{
+	int	max;
+	t_node	*h;
+
+	max = 0;
+	h = li->head;
+	while (h)
+	{
+		if (max < h->value)
+		{
+			max = h->value;
+			li->max = h;
+		}
+		h = h->next;
+	}
+}
+
+void	min_value(t_list	*li)
+{
+	int	min;
+	t_node	*h;
+
+	min = li->head->value;
+	h = li->head;
+	while (h)
+	{
+		if (min >= h->value)
+		{
+			min = h->value;
+			li->min = h;
+		}
+		h = h->next;
+	}
+}
+
+void	middle_list(t_list	*li)
+{
+	t_node	*slow;
+	t_node	*fast;
+
+	slow = li->head;
+	fast = li->head;
+	while (fast && fast->next)
+	{
+		slow = slow->next;
+		fast = fast->next->next;
+	}
+	li->mid = slow;
 }

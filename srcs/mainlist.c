@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/10 22:00:20 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:50:07 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,19 @@
 #define INT_MAX 2147483647
 #define INT_MIN -2147483648
 
-/*void	free_stack(t_stack *stack)
-{
-	
-}*/
 void	error_msg(char	*s)
 {
 	ft_printf("Error\n%s\n", s);
 	exit (1);
 }
+/*-----------------------------*/
 
-void	check_sort(int	a, int	b)
-{
-	
-	if (a > b)
-	{	
-		ft_printf("%d, %d\n pas ordre croissant\n", a, b);
-	}
-}
-void	check_duplicate(char	**av, int i)
+void	check_dup_sort(char	**av, int i)
 {
 	int	j;
+	int	sort;
 
+	sort = 0;
 	while (av[++i])
 	{
 		if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < INT_MIN)
@@ -43,12 +34,15 @@ void	check_duplicate(char	**av, int i)
 		j = i + 1;
 		while (av[j])
 		{
-			check_sort((int)ft_atoi(av[i]), (int)ft_atoi(av[j]));
 			if (ft_atoi(av[i]) == ft_atoi(av[j]) || ft_atoi(av[i]) > INT_MAX)
 				error_msg("There are a integer duplicate\n");
+			if (ft_atoi(av[i]) > ft_atoi(av[j]))
+				sort++;
 			j++;
 		}
 	}
+	if (sort == false)
+		exit (1);
 	return ;
 }
 /*--------------------------------*/
@@ -81,7 +75,7 @@ void	tab_split(char *s, t_list	*stack)
 
 	i = -1;
 	tab_s = ft_split(s, ' ');
-	check_duplicate(tab_s, i);
+	check_dup_sort(tab_s, i);
 	while (tab_s[++i])
 	{
 		if(check_alpha(tab_s[i]))
@@ -99,7 +93,7 @@ void	tab(char **av, t_list	*stack)
 	int	i;
 	
 	i = 0;
-	check_duplicate(av, i);
+	check_dup_sort(av, i);
 	while (av[++i])
 	{	
 		if(check_alpha(av[i]))
@@ -114,10 +108,14 @@ int	main(int argc, char **argv)
 	t_list	stack_a;
 	t_list	stack_b;
 	stack_a.head = NULL;
-   	stack_a.last = NULL;	
+   	stack_a.last = NULL;
+	stack_a.max  = NULL;
+	stack_a.min  = NULL;	
 	stack_b.head = NULL;
 	stack_b.last = NULL;
-	
+	stack_b.max  = NULL;
+	stack_b.min  = NULL;
+	stack_a.mid  = NULL;	
 	if (argc == 1)
 		exit(EXIT_FAILURE);
 	if (ft_strchr(argv[1], ' '))
@@ -129,10 +127,8 @@ int	main(int argc, char **argv)
 		exit (EXIT_FAILURE);
 	if (stack_a.size == 3)
 		mini_sort(&stack_a);
-/*	ft_printf("sizelist => %d\n", stack_a.size);
-	ft_printf("	stack_a\n	-------\n");
-	print_list(&stack_a);*/
-//	_quickSort(stack_a.head, stack_a.last, &stack_a);
-	print_list(&stack_a);
+	//	_quickSort(stack_a.head, stack_a.last, &stack_a);
+	print_list(&stack_a, &stack_b);
+	test(&stack_a, &stack_b);
 	return (0);
 }

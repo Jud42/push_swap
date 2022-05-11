@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/10 20:18:31 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/11 21:50:09 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	swap_a_b(t_list	*a, t_list	*b)
 
 void	push_stack(t_list	*li_a, t_list	*li_b, char	*s)
 {
-	if (li_b == NULL)
+	if (li_b->head == NULL)
 		return ;
 	insert_front_list(li_a, li_b->head->value);
 	delete_front_list(li_b);
