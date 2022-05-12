@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:33:11 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/11 17:12:57 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:02:15 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "libft.h"
 # define false 0
 # define true 1
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct s_node{
 	int	value;
@@ -24,14 +26,16 @@ typedef struct s_node{
 }	t_node; 
 
 typedef	struct	s_list{
+	int	max;
+	int	min;
+	int	mid;
 	int	size;
 	struct	s_node	*head;
 	struct	s_node	*last;
-	struct	s_node	*max;
-	struct	s_node	*min;
-	struct	s_node	*mid;
 }	t_list;
 
+void	init_stack(t_list *stack);
+void	parse_in(char **argv, t_list *stack);
 void	last_node(t_list *li);
 void		list_size(t_list *li);
 void	print_list(t_list *a, t_list *b);
@@ -52,6 +56,9 @@ void	_quickSort(t_node *l, t_node *h, t_list *li);
 void	mini_sort(t_list *li);
 void	max_value(t_list *li);
 void	min_value(t_list *li);
-void	middle_list(t_list *li);
+int		middle_list(t_list *li);
 void	test(t_list *a, t_list *b);
+void	part_a(t_list *a, t_list *b);
+int		check_need_sort(t_list *li);
+void	_kiki(t_list *a, t_list *b);
 # endif

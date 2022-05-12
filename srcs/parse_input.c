@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/11 21:53:37 by rmamison         ###   ########.fr       */
+/*   Created: 2022/05/12 13:36:34 by rmamison          #+#    #+#             */
+/*   Updated: 2022/05/12 17:02:01 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#define INT_MAX 2147483647
-#define INT_MIN -2147483648
 
 void	error_msg(char	*s)
 {
@@ -101,34 +99,15 @@ void	tab(char **av, t_list	*stack)
 		insert_back_list(stack, ft_atoi(av[i]));
 	}
 }
-/*------------------------------------*/
+/*---------------------------------------------*/
 
-int	main(int argc, char **argv)
-{
-	t_list	stack_a;
-	t_list	stack_b;
-	stack_a.head = NULL;
-   	stack_a.last = NULL;
-	stack_a.max  = NULL;
-	stack_a.min  = NULL;	
-	stack_b.head = NULL;
-	stack_b.last = NULL;
-	stack_b.max  = NULL;
-	stack_b.min  = NULL;
-	stack_a.mid  = NULL;	
-	if (argc == 1)
-		exit(EXIT_FAILURE);
+void	parse_in(char	**argv, t_list	*stack)
+{	
 	if (ft_strchr(argv[1], ' '))
-		tab_split(argv[1], &stack_a);
+		tab_split(argv[1], stack);
 	else
-		tab(argv, &stack_a);
-	list_size(&stack_a);
-	if (stack_a.size == 0)
+		tab(argv, stack);
+	list_size(stack);
+	if (stack->size == 0)
 		exit (EXIT_FAILURE);
-	if (stack_a.size == 3)
-		mini_sort(&stack_a);
-	//	_quickSort(stack_a.head, stack_a.last, &stack_a);
-	print_list(&stack_a, &stack_b);
-	test(&stack_a, &stack_b);
-	return (0);
 }

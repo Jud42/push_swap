@@ -6,18 +6,22 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/12 13:58:01 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:02:13 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack(t_node	*a, t_node	*b, char	*s)
+void	swap_stack(t_list	*li, char	*s)
 {
-	if (!a->next)
-		return ;
-	int	x;
 
+	if (!li->head || li->head->next)
+		return ;
+	t_node	*head;
+	t_node	*temp;
+	if ()
+	temp = li->head->next;
+	head = li->head;
 	x = a->value;
 	a->value = b->value;
 	b->value = x;

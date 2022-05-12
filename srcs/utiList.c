@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/11 21:53:43 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/12 17:01:57 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,45 +135,39 @@ void	clear_list(t_list *li)
 
 void	max_value(t_list	*li)
 {
-	int	max;
 	t_node	*h;
 
-	max = 0;
+	li->max = 0;
 	h = li->head;
 	while (h)
 	{
-		if (max < h->value)
-		{
-			max = h->value;
-			li->max = h;
-		}
+		if (li->max < h->value)
+			li->max = h->value;
 		h = h->next;
 	}
 }
 
 void	min_value(t_list	*li)
 {
-	int	min;
 	t_node	*h;
 
-	min = li->head->value;
+	li->min = li->head->value;
 	h = li->head;
 	while (h)
 	{
-		if (min >= h->value)
-		{
-			min = h->value;
-			li->min = h;
-		}
+		if (li->min >= h->value)
+			li->min = h->value;
 		h = h->next;
 	}
 }
 
-void	middle_list(t_list	*li)
+int	middle_list(t_list	*li)
 {
 	t_node	*slow;
 	t_node	*fast;
+	int	ret;
 
+	ret = 0;
 	slow = li->head;
 	fast = li->head;
 	while (fast && fast->next)
@@ -181,5 +175,29 @@ void	middle_list(t_list	*li)
 		slow = slow->next;
 		fast = fast->next->next;
 	}
-	li->mid = slow;
+	ret = slow->value;
+	return (ret);
 }
+
+int	check_need_sort(t_list	*li)
+{
+	t_node	*av;
+	t_node	*aft;
+	int	sort;
+
+	av = li->head;
+	aft = li->head->next;
+	sort = 0;
+	while (aft)
+	{
+		if (aft->value < av->value)
+		{
+			sort++;
+			return (sort);
+		}
+		aft = aft->next;
+		av = av->next;
+	}
+	return (sort);
+}
+
