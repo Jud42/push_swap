@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:36:34 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/12 17:02:01 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:25:45 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	parse_in(char	**argv, t_list	*stack)
 		tab_split(argv[1], stack);
 	else
 		tab(argv, stack);
-	list_size(stack);
+	stack->size = list_size(stack);
 	if (stack->size == 0)
 		exit (EXIT_FAILURE);
 }

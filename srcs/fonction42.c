@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/12 17:02:13 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:03:26 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,96 @@
 void	swap_stack(t_list	*li, char	*s)
 {
 
-	if (!li->head || li->head->next)
+	if (!li->head || !li->head->next)
 		return ;
-	t_node	*head;
 	t_node	*temp;
-	if ()
-	temp = li->head->next;
-	head = li->head;
-	x = a->value;
-	a->value = b->value;
-	b->value = x;
+	t_node	*a;
+	t_node	*b;
+	
+	a = li->head;
+	b = li->head->next;
+	temp = b;
+	if (list_size(li) == 2)
+	{
+		temp = b;
+		temp->prev = NULL;
+		a->prev = temp;
+		b = a;
+		b->next = NULL;
+		temp->next = b;
+		li->head = temp;
+	}
+	else
+	{
+		temp = b;
+		temp->prev = NULL;
+		a->prev = temp;
+		b = a;
+		b->next = temp->next;
+		b->next->prev = b;
+		temp->next = b;
+		li->head = temp;
+	}
+
 	ft_printf("%s\n", s);
 }
 
 void	swap_a_b(t_list	*a, t_list	*b)
 {
-	swap_stack(a->head, a->head->next, " ");
-	swap_stack(b->head, b->head->next, " ");
+	swap_stack(a, " ");
+	swap_stack(b, " ");
 	ft_printf("ss\n");
 }
 
-void	push_stack(t_list	*li_a, t_list	*li_b, char	*s)
+void	push_stack(t_list	*from, t_list	*to, char	*s)
 {
-	if (li_b->head == NULL)
+	if (from->head == NULL)
 		return ;
-	insert_front_list(li_a, li_b->head->value);
-	delete_front_list(li_b);
+	if (from->head->next == NULL)
+	{
+		if (to->head == NULL)
+			to->head = from->head;
+		delete_front_list(from);
+	}	
+	else
+	{
+		//t_node	*temp;
+		if (to->head == NULL)
+		{
+			to->head = from->head;
+			from->head = from->head->next;
+			from->head->prev = NULL;
+			to->head->next = NULL;
+		}
+		else 
+		{
+			to->head->prev = from->head;
+			from->head = from->head->next;
+			from->head->prev = NULL;
+			to->head->prev->next = to->head;
+			to->head = to->head->prev;
+		}
+	}
 	ft_printf("%s\n", s);
 }
 
 void	rotate_stack(t_list	*li, char	*s)
 {
-	if (li->head == NULL || li->size == 1)
+	if (li->head == NULL || li->head->next == NULL)
 		return ;
 	t_node	*temp;
-	int	a;
-	int	b;
+	t_node	*temp_nxt;
 
-	temp = li->last;
-	a = temp->value;
-	while (temp->prev != NULL)
-	{
-		b = temp->prev->value;
-		temp->prev->value = a;
-		a = b;
-		temp = temp->prev;
-	}
-	li->last->value = a;
+	temp = li->head;
+	temp_nxt = li->head->next;
+	/*-------*/
+	li->last->next = temp;
+	temp->prev = li->last;
+	temp->next = NULL;
+	temp_nxt->prev = NULL;
+	li->head = temp_nxt;
+	li->last = temp;
+	/*---------*/
 	ft_printf("%s\n", s);
 }
 
@@ -74,22 +117,21 @@ void	rotate_a_b(t_list	*a, t_list	*b, char	*s)
 
 void	reverse_rotate(t_list	*li, char	*s)
 {
-	if (li->head == NULL || li->size == 1)
+	if (li->head == NULL || li->head->next == NULL)
 		return ;
 	t_node	*temp;
-	int	a;
-	int	b;
+	t_node	*last_prv;
 
-	temp = li->head;
-	a = temp->value;
-	while (temp->next != NULL)
-	{
-		b = temp->next->value;
-		temp->next->value = a;
-		a = b;
-		temp = temp->next;
-	}
-	li->head->value = a;
+	temp = li->last;
+	last_prv = li->last->prev;
+	/*-------*/
+	li->head->prev = temp;
+	temp->next = li->head;
+	temp->prev = NULL;
+	last_prv->next = NULL;
+	li->head = temp;
+	li->last = last_prv;
+	/*---------*/
 	ft_printf("%s\n", s);
 }
 

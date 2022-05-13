@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/12 17:01:57 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:08:58 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,21 @@ t_node	*get_new_node(int	x)
 	return (new);
 }
 
-void	list_size(t_list *li)
+int	list_size(t_list *li)
 {
 	t_node	*actual;
-   	
+   	int	ret;
+	
 	actual = li->head;
-	li->size = 0;
-	if (li->head)
+	ret = 0;
+	while (actual != NULL)
 	{
-		while (actual != NULL)
-		{
-			li->size++;
-			actual = actual->next;
-		}
+		ret++;
+		actual = actual->next;
 	}
 	free(actual);
 	actual = NULL;
+	return (ret);
 }
 
 void	insert_back_list(t_list	*li, int	nbr)

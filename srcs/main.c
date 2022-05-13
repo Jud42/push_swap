@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/12 17:02:00 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/13 17:08:54 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	main(int argc, char **argv)
 //		mini_sort(&stack_a);
 	init_stack(&stack_b);
 	print_list(&stack_a, &stack_b);
+	reverse_rotate(&stack_a, "test");
+	print_list(&stack_a, &stack_b);
+	swap_stack(&stack_a, " swap");
+	print_list(&stack_a, &stack_b);
+	push_stack(&stack_a, &stack_b, "push");
+	print_list(&stack_a, &stack_b);
 //	_quickSort(stack_a.head, stack_a.last, &stack_a);
-	_kiki(&stack_a, &stack_b);
+//	_kiki(&stack_a, &stack_b);
 	return (0);
 }
