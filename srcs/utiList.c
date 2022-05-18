@@ -53,6 +53,7 @@ void	insert_back_list(t_list	*li, int	nbr)
 	if (li->head == NULL)
 	{
 		li->head = news;
+		li->size++;
 		return ;
 	}
 	t_node	*temp;
@@ -63,6 +64,7 @@ void	insert_back_list(t_list	*li, int	nbr)
 	news->prev = temp;
 	temp->next = news;
 	li->last = temp->next;
+	li->size++;
 }
 
 void	insert_front_list(t_list	*li, int	nbr)
@@ -72,12 +74,13 @@ void	insert_front_list(t_list	*li, int	nbr)
 	news = get_new_node(nbr);
 	if (li->head != NULL)
 	{
-		//li->head->prev = news;
 		news->next = li->head;
 		li->head = news;
+		li->size++;
 		return ;
 	}
 	li->head = news;
+	li->size++;
 }
 
 void	delete_back_list(t_list	*li)
@@ -88,6 +91,7 @@ void	delete_back_list(t_list	*li)
 	{
 		free(li->head);
 		li->head = NULL;
+		li->size--;
 		return ;
 	}
 	t_node	*temp;
@@ -104,6 +108,7 @@ void	delete_back_list(t_list	*li)
 	li->last = before;
 	free(temp);
 	temp = NULL;
+	li->size--;
 }
 
 void	delete_front_list(t_list	*li)
@@ -114,6 +119,7 @@ void	delete_front_list(t_list	*li)
 	{
 		free(li->head);
 		li->head = NULL;
+		li->size--;
 		return;
 	}
 	t_node	*temp;
@@ -122,6 +128,7 @@ void	delete_front_list(t_list	*li)
 	li->head = temp;
 	temp->prev = NULL;
 	free(temp->prev);
+	li->size--;
 }
 
 void	clear_list(t_list *li)
@@ -132,32 +139,37 @@ void	clear_list(t_list *li)
 		delete_back_list(li);
 }
 
-void	max_value(t_list	*li)
+int	max_value(t_list	*li)
 {
 	t_node	*h;
 
-	li->max = 0;
+	int	max;
+	max  = 0;
 	h = li->head;
 	while (h)
 	{
-		if (li->max < h->value)
-			li->max = h->value;
+		if (max < h->value)
+			max = h->value;
 		h = h->next;
 	}
+	return (max);
 }
 
-void	min_value(t_list	*li)
+int	min_value(t_list	*li)
 {
 	t_node	*h;
 
-	li->min = li->head->value;
+	int	min;
+
+	min = li->head->value;
 	h = li->head;
 	while (h)
 	{
-		if (li->min >= h->value)
-			li->min = h->value;
+		if (min >= h->value)
+			min = h->value;
 		h = h->next;
 	}
+	return (min);
 }
 
 int	middle_list(t_list	*li)
@@ -177,6 +189,38 @@ int	middle_list(t_list	*li)
 	ret = slow->value;
 	return (ret);
 }
+
+int	mid_five_sort(t_list	*li)
+{
+	int	value[5];
+	int	i;
+	int	j;
+	int	swp;
+	t_node	*temp;
+
+	temp = li->head;
+	i = -1;
+	while (++i < li->size && temp)
+	{
+		value[i] = temp->value;
+		temp = temp->next;
+	}
+	while (--i > 0)
+	{
+		j = -1;
+		while (++j < i)
+		{
+			if (value[j] > value[j + 1])
+			{
+				swp = value[j + 1];
+				value[j + 1] = value[j];
+				value[j] = swp;
+			}
+		}	
+	}
+	return (value[2]);
+}
+
 
 int	check_need_sort(t_list	*li)
 {

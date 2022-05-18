@@ -20,18 +20,13 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		exit(1);
 	init_stack(&stack_a);
-	parse_in(argv, &stack_a);	
-//	if (stack_a.size == 3)
-//		mini_sort(&stack_a);
+	parse_in(argv, &stack_a);
+	ft_printf("size => a %d\n", stack_a.size);	
 	init_stack(&stack_b);
 	print_list(&stack_a, &stack_b);
-	reverse_rotate(&stack_a, "test");
-	print_list(&stack_a, &stack_b);
-	swap_stack(&stack_a, " swap");
-	print_list(&stack_a, &stack_b);
-	push_stack(&stack_a, &stack_b, "push");
+	push_swap(&stack_a, &stack_b);
 	print_list(&stack_a, &stack_b);
 //	_quickSort(stack_a.head, stack_a.last, &stack_a);
-//	_kiki(&stack_a, &stack_b);
+	free(stack_a.head);
 	return (0);
 }

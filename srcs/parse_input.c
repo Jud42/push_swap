@@ -107,7 +107,6 @@ void	parse_in(char	**argv, t_list	*stack)
 		tab_split(argv[1], stack);
 	else
 		tab(argv, stack);
-	stack->size = list_size(stack);
 	if (stack->size == 0)
 		exit (EXIT_FAILURE);
 }

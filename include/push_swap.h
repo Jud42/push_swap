@@ -34,6 +34,13 @@ typedef	struct	s_list{
 	struct	s_node	*last;
 }	t_list;
 
+typedef	struct	s_nb_oper{
+	int	ra;
+	int	rb;
+	int	pa;
+	int	pb;
+}	t_nb_oper;
+
 void	init_stack(t_list *stack);
 void	parse_in(char **argv, t_list *stack);
 void	last_node(t_list *li);
@@ -52,13 +59,15 @@ void	rotate_a_b(t_list *a, t_list *b, char *s);
 void	reverse_rotate(t_list *li, char *s);
 void	rotate_a_b(t_list *a, t_list *b, char *s);
 void	reverse_rotate_a_b(t_list *a, t_list *b, char *s);
-void	_quickSort(t_node *l, t_node *h, t_list *li);
-void	mini_sort(t_list *li);
-void	max_value(t_list *li);
-void	min_value(t_list *li);
-int		middle_list(t_list *li);
-void	test(t_list *a, t_list *b);
-void	part_a(t_list *a, t_list *b);
-int		check_need_sort(t_list *li);
-void	_kiki(t_list *a, t_list *b);
+int	max_value(t_list *li);
+int	min_value(t_list *li);
+int	middle_list(t_list *li);
+int	mid_five_sort(t_list *li);
+void	three_sort(t_list *li);
+void	five_sort(t_list *a, t_list *b);
+void	big_sort(t_list *a, t_list *b);
+void	partition_a(t_list *a, t_list *b);
+int	check_need_sort(t_list *li);
+void	push_swap(t_list *a, t_list *b);
+
 # endif

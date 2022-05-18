@@ -12,128 +12,80 @@
 #include "push_swap.h"
 
 // set the pivot and place it 
-t_node	*partition_list(t_node	*head, t_node *last)
-{
-    int	x;
-    t_node	*i;
-    t_node	*j;
 
-	x = last->value;
-	i = head->prev;
-	j = head; 
-	while (j != last)
-    {
-        if (j->value <= x)
-        {
-            if (i == NULL) 
-				i = head; 
-			else
-				i = i->next;
-			swap_stack(i, j, " ");
-        }
-		j = j->next;
-    }
-    if (i == NULL)
-		i =	head;
-	else
-		i = i->next;
-    swap_stack(i, last, " ");
-	ft_printf("partition %d\n=>", i->value);
-    return i;
-}
-
-void _quickSort(t_node	*l, t_node	*h, t_list	*li)
+void	three_sort(t_list	*li)
 {
-    if (h != NULL && l != h && l != h->next)
-    {
-        t_node *p = partition_list(l, h);
-		print_list(li, li);
-        _quickSort(l, p->prev, li);
-        _quickSort(p->next, h, li);
-    }
-}
+	int	h;
+	int	n;
+	int	l;
 
-void	mini_sort(t_list	*li)
-{
-	t_node	*head = li->head;
-	t_node	*last = li->last;
-	if (head->value > last->value)
+	while (check_need_sort(li))
 	{
-		if (head->value > head->next->value && \
-				last->value < last->prev->value)
-		{	
+		h = li->head->value;
+		n = li->head->next->value;
+		l = li->last->value;
+		if (h > n && h > l)
 			rotate_stack(li, "ra");
-			swap_stack(head, head->next, "sa");
-		}
-		else
-			rotate_stack(li, "ra");
-		return ;
+		if (h > n && h < l)
+			swap_stack(li, "sa");
+		if (l < n && n > h)
+			reverse_rotate(li, "rra");
 	}
-	swap_stack(head, head->next, "sa");
-	//rotate_stack(li, "ra");
 }
 
-void	test(t_list	*a, t_list *b)
+void	five_sort(t_list	*a, t_list	*b)
 {
-	t_node	*a_h;
-	t_node	*a_l;
-	//t_node	*st_b;
+	int	mid;
 
-	a_h = a->head;
-	middle_list(a); //initialize midpoint
-	ft_printf("[midpoint] => %d\n", a->mid);
-	while (a_h && a_h->value != a->mid)
-	{
-		if (a_h->value > a_h->next->value)
-			swap_stack(a_h, a_h->next, "sa");
-		if (a_h->value < a->mid)
-		{
-			push_stack(b, a, "pb");
-			a_h = a->head;
-		}
+	mid = mid_five_sort(a);
+	while (1)
+	{	
+		if (a->head->value < mid)
+			push_stack(a, b, "pa");
 		else
-			a_h = a_h->next;
-	}
-	print_list(a, b);
-	a_l = a->last;
-	while (a_l && a_l->value != a->mid)
-	{
-		if (a_l->value < a->mid)
-			reverse_rotate(a, "rra");
-		else
-		{
-			a_l = a_l->prev;
-			ft_printf("%d\n", a_l->value);
-		}
-	}
-	print_list(a, b);
-}
-
-void	part_a(t_list	*a, t_list	*b)
-{
-	t_node	*a_h;
-	//t_node	*a_l;
-	int	midp;
-
-	a_h = a->head;
-	midp = middle_list(a);
-	ft_printf("midpoint => %d\n", midp);
-	while (a_h && a_h->value != midp)
-	{
-		if (a_h->value > midp)
 			rotate_stack(a, "ra");
-		if (a_h->value > a_h->next->value)
-			swap_stack(a_h, a_h->next, "sa");
-		if (a_h->value < midp)
-			push_stack(b, a, "pb");
-		else
-			a_h = a_h->next;
-		a_h = a->head;
+		if (b->size == 2)
+			break ;
 	}
-	print_list(a, b);
+	three_sort(a);
+	if (b->head->value < b->head->next->value)
+		swap_stack(b, "sb");
+	while (b->head)
+		push_stack(b, a, "pb");
 }
 
-void	_kiki(t_list	*a, t_list	*b)
+
+void	partition_a(t_list	*a, t_list	*b)
+{
+	int	i;
+	int	mid;
+	int	mid_mid;
+
+	i       = a->size;
+	a->max  = max_value(a);
+	a->min  = min_value(a);
+	mid     = (a->max + a->min) / 2;
+	mid_mid = (a->min + mid) / 2;
+	ft_printf("midpoint => %d\n", mid_mid);
+	while (i-- > 0)
+	{
+		if (a->head->value > mid)
+			rotate_stack(a, "ra");
+		else
+		{
+			push_stack(a, b, "pb");
+			if (b->head->value > mid_mid)
+				rotate_stack(b, "rb");
+
+		}
+	}
+}
+/*
+void	partition_b(t_list	*b, t_list	*a)
+{
+
+}*/
+/*void	_kiki(t_list	*a, t_list	*b)
 {
 	//t_node	*new_a = a->head;
 	//t_node	*new_b = b->head;
@@ -149,4 +101,3 @@ void	_kiki(t_list	*a, t_list	*b)
 	//		part_a(a, b);		
 	}
 	ft_printf("finish\n");
-}

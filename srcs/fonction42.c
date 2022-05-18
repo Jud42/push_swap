@@ -24,7 +24,7 @@ void	swap_stack(t_list	*li, char	*s)
 	a = li->head;
 	b = li->head->next;
 	temp = b;
-	if (list_size(li) == 2)
+	if (li->size == 2)
 	{
 		temp = b;
 		temp->prev = NULL;
@@ -64,17 +64,23 @@ void	push_stack(t_list	*from, t_list	*to, char	*s)
 	{
 		if (to->head == NULL)
 			to->head = from->head;
-		delete_front_list(from);
+		else
+		{	
+			to->head->prev = from->head;
+			from->head->next = to->head;
+			to->head = from->head;
+		}
+		from->head = NULL;
 	}	
 	else
 	{
-		//t_node	*temp;
 		if (to->head == NULL)
 		{
 			to->head = from->head;
 			from->head = from->head->next;
 			from->head->prev = NULL;
 			to->head->next = NULL;
+			from->size--;
 		}
 		else 
 		{
@@ -83,8 +89,10 @@ void	push_stack(t_list	*from, t_list	*to, char	*s)
 			from->head->prev = NULL;
 			to->head->prev->next = to->head;
 			to->head = to->head->prev;
+			from->size--;
 		}
 	}
+	to->size++;
 	ft_printf("%s\n", s);
 }
 
@@ -95,7 +103,7 @@ void	rotate_stack(t_list	*li, char	*s)
 	t_node	*temp;
 	t_node	*temp_nxt;
 
-	temp = li->head;
+	temp	= li->head;
 	temp_nxt = li->head->next;
 	/*-------*/
 	li->last->next = temp;
