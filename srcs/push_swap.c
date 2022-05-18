@@ -10,11 +10,13 @@ void	init_oper(t_nb_oper	*op)
 */
 void	push_swap(t_list	*a, t_list	*b)
 {
+	int	count;
 	
+	count = 0;
 	if (a->size == 3)
 		three_sort(a);
 	else if (a->size == 5)
 		five_sort(a, b);
 	else
-		big_sort(a, b);
+		sort_a(a, b, a->size, &count);
 }
