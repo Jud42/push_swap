@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/13 17:08:58 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:46:33 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,14 +139,14 @@ void	clear_list(t_list *li)
 		delete_back_list(li);
 }
 
-int	max_value(t_list	*li)
+int	max_value(t_list	*li, int	size)
 {
 	t_node	*h;
 
 	int	max;
 	max  = 0;
 	h = li->head;
-	while (h)
+	while (h && size--)
 	{
 		if (max < h->value)
 			max = h->value;
@@ -155,7 +155,7 @@ int	max_value(t_list	*li)
 	return (max);
 }
 
-int	min_value(t_list	*li)
+int	min_value(t_list	*li, int	size)
 {
 	t_node	*h;
 
@@ -163,7 +163,7 @@ int	min_value(t_list	*li)
 
 	min = li->head->value;
 	h = li->head;
-	while (h)
+	while (h && size--)
 	{
 		if (min >= h->value)
 			min = h->value;

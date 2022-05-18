@@ -6,57 +6,65 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/13 17:03:26 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/18 13:37:13 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_stack(t_list	*li, char	*s)
+void	swap_stack(t_list	*li, int	flag)
 {
 
 	if (!li->head || !li->head->next)
 		return ;
-	t_node	*temp;
 	t_node	*a;
 	t_node	*b;
 	
 	a = li->head;
 	b = li->head->next;
-	temp = b;
+	if (li->size > 2)
+		b->next->prev = li->head;
+	a->next = b->next;
+   	li->head = b;
+	li->head->prev = NULL;
+	li->head->next = a;
+	a->prev = li->head;
 	if (li->size == 2)
-	{
-		temp = b;
-		temp->prev = NULL;
-		a->prev = temp;
-		b = a;
-		b->next = NULL;
-		temp->next = b;
-		li->head = temp;
-	}
-	else
-	{
-		temp = b;
-		temp->prev = NULL;
-		a->prev = temp;
-		b = a;
-		b->next = temp->next;
-		b->next->prev = b;
-		temp->next = b;
-		li->head = temp;
-	}
-
-	ft_printf("%s\n", s);
+		li->last = li->head->next;
+	if (flag == A)
+		ft_putendl_fd("sa", 1);
+	else if (flag == B)
+		ft_putendl_fd("sb", 1);
 }
 
 void	swap_a_b(t_list	*a, t_list	*b)
 {
-	swap_stack(a, " ");
-	swap_stack(b, " ");
-	ft_printf("ss\n");
+	swap_stack(a, 0);
+	swap_stack(b, 0);
+	ft_putendl_fd("ss", 1);
 }
+/*------------------------------------------*/
+static void	push_follow(t_list	*from, t_list	*to)
+{
+	if (to->head == NULL)
+		{
+			to->head = from->head;
+			from->head = from->head->next;
+			from->head->prev = NULL;
+			to->head->next = NULL;
+			from->size--;
+		}
+		else 
+		{
+			to->head->prev = from->head;
+			from->head = from->head->next;
+			from->head->prev = NULL;
+			to->head->prev->next = to->head;
+			to->head = to->head->prev;
+			from->size--;
+}	
 
-void	push_stack(t_list	*from, t_list	*to, char	*s)
+void	push_stack(t_list	*from, t_list	*to, int	flag)
 {
 	if (from->head == NULL)
 		return ;
@@ -73,30 +81,15 @@ void	push_stack(t_list	*from, t_list	*to, char	*s)
 		from->head = NULL;
 	}	
 	else
-	{
-		if (to->head == NULL)
-		{
-			to->head = from->head;
-			from->head = from->head->next;
-			from->head->prev = NULL;
-			to->head->next = NULL;
-			from->size--;
-		}
-		else 
-		{
-			to->head->prev = from->head;
-			from->head = from->head->next;
-			from->head->prev = NULL;
-			to->head->prev->next = to->head;
-			to->head = to->head->prev;
-			from->size--;
-		}
-	}
+		push_follow(from, to);
 	to->size++;
-	ft_printf("%s\n", s);
+	if	(flag == A)
+		ft_putendl_fd("pa", 1);
+	else if (flag == B)	
+		ft_putendl_fd("pb", 1);
 }
-
-void	rotate_stack(t_list	*li, char	*s)
+/*--------------------------------------------------*/
+void	rotate_stack(t_list	*li, int	flag)
 {
 	if (li->head == NULL || li->head->next == NULL)
 		return ;
@@ -113,17 +106,20 @@ void	rotate_stack(t_list	*li, char	*s)
 	li->head = temp_nxt;
 	li->last = temp;
 	/*---------*/
-	ft_printf("%s\n", s);
+	if (flag == A)
+		ft_putendl_fd("ra", 1);
+	else if (flag == B)
+		ft_putendl_fd("rb", 1);
 }
 
-void	rotate_a_b(t_list	*a, t_list	*b, char	*s)
+void	rotate_a_b(t_list	*a, t_list	*b)
 {
-	rotate_stack(a, " ");
-	rotate_stack(b, " ");
-	ft_printf("%s\n", s);
+	rotate_stack(a, 0);
+	rotate_stack(b, 0);
+	ft_putendl_fd("rr", 1);
 }
-
-void	reverse_rotate(t_list	*li, char	*s)
+/*---------------------------------------------------*/
+void	reverse_rotate(t_list	*li, int flag)
 {
 	if (li->head == NULL || li->head->next == NULL)
 		return ;
@@ -140,13 +136,16 @@ void	reverse_rotate(t_list	*li, char	*s)
 	li->head = temp;
 	li->last = last_prv;
 	/*---------*/
-	ft_printf("%s\n", s);
+	if (flag == A)
+		ft_putendl_fd("rra", 1);
+	else if (flag == B)
+		ft_putendl_fd("rrb", 1);
 }
 
-void	reverse_rotate_a_b(t_list	*a, t_list	*b, char	*s)
+void	reverse_rotate_a_b(t_list	*a, t_list	*b)
 {
-	reverse_rotate(a, " ");
-	reverse_rotate(b, " ");
-	ft_printf("%s\n", s);
+	reverse_rotate(a, 0);
+	reverse_rotate(b, 0);
+	ft_putendl_fd("rrr", 1);
 }
 

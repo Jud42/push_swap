@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   two_manage.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 12:20:24 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 10:10:07 by rmamison         ###   ########.fr       */
+/*   Created: 2022/05/18 15:54:33 by rmamison          #+#    #+#             */
+/*   Updated: 2022/05/18 19:21:51 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+# include "push_swap.h"
 
-void	ft_putendl_fd(char *s, int fd)
+void	two_mng(t_list	*a, t_list	*b, int flag)
 {
-	if (!s || !fd)
-		return ;
-	ft_putstr_fd(s, fd);
-	ft_putchar_fd('\n', fd);
+	if (flag == A)
+		if (a->head->value > a->head->next->value)
+			swap_stack(a, A);
+	else
+	{
+		if (b->head->value < b->head->next->value)
+			swap_stack(b, B);
+		push_swap(b, a, A);
+		push_swap(b, a, A);
+	}
 }

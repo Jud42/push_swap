@@ -1,7 +1,7 @@
 
 NAME		= push_swap
 LIB_PRINTF_DIR		= ./libft/ft_printf
-SRCS	= main.c	parse_input.c	init_struct.c	utiList.c	sort_utils.c print_list.c	fonction42.c
+SRCS	= main.c	parse_input.c	init_struct.c	utiList.c	sort_utils.c print_list.c	fonction42.c	sort_base.c
 DIR_S	= srcs
 DIR_O	= temp
 RM 	= rm -rf
