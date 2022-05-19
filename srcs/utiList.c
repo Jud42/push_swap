@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 12:46:33 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 15:50:01 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,25 @@ t_node	*get_new_node(int	x)
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
+}
+
+t_node	*last_node(t_list	*li)
+{
+	t_node	*last;
+	t_node	*temp;
+
+	temp = li->head;
+	if (!li->head)
+		last = NULL;
+	else
+	{
+	  	while (temp)
+		{	
+			last = temp;
+			temp = temp->next;
+		}
+	}
+	return (last);
 }
 
 int	list_size(t_list *li)
@@ -160,7 +179,8 @@ int	min_value(t_list	*li, int	size)
 	t_node	*h;
 
 	int	min;
-
+	if (!li->head)
+		return (0);
 	min = li->head->value;
 	h = li->head;
 	while (h && size--)
@@ -200,7 +220,7 @@ int	mid_five_sort(t_list	*li)
 
 	temp = li->head;
 	i = -1;
-	while (++i < li->size && temp)
+	while (++i < 5 && temp)
 	{
 		value[i] = temp->value;
 		temp = temp->next;

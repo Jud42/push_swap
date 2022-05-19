@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:25:50 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 19:33:21 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:50:04 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ static void	five_mng_a(t_list	*a, t_list	*b, int	size)
 	int	push;
 	int	mid;
 
-	mid = mid_five_sort(a, size)
+	mid = mid_five_sort(a);
 	rot = 0;
 	push = 0;
 	while (size--)
 	{
 		if (a->head->value < mid)
 		{
-			push_swap(a, b, B);
+			push_stack(a, b, B);
 			push++;
 		}
 		else
@@ -46,14 +46,14 @@ static void	five_mng_b(t_list	*a, t_list	*b, int	size)
 	int	push;
 	int	mid;
 
-	mid = mid_five_sort(b, size)
+	mid = mid_five_sort(b);
 	rot = 0;
 	push = 0;
 	while (size--)
 	{
 		if (b->head->value >= mid)
 		{
-			push_swap(b, a, A);
+			push_stack(b, a, A);
 			push++;
 		}
 		else
@@ -68,12 +68,12 @@ static void	five_mng_b(t_list	*a, t_list	*b, int	size)
 		reverse_rotate(b, B);	
 }
 
-void	five_mng(t_list	*a, t_list	*b, int	sz, int flag)
+void	five_mng(t_list	*a, t_list	*b, int	size, int flag)
 {
 	if (flag == A)
-		five_mng_a(a, b, sz);
+		five_mng_a(a, b, size);
 	else
-		five_mng_b(a, b, sz);
-	three_mng(a, 3);
+		five_mng_b(a, b, size);
+	three_mng_a(a, 3);
 	two_mng(a, b, B);
 }

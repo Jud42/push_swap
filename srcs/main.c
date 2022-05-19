@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/15 13:35:13 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/13 17:08:54 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:10:36 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	main(int argc, char **argv)
 	print_list(&stack_a, &stack_b);
 	push_swap(&stack_a, &stack_b);
 	print_list(&stack_a, &stack_b);
-//	_quickSort(stack_a.head, stack_a.last, &stack_a);
 	free(stack_a.head);
 	return (0);
 }

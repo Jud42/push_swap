@@ -6,15 +6,21 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:52:15 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 22:51:23 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:54:24 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
-static void	part_b(t_list	*a, t_list	*b, s_nb_oper	*op)
+static void	part_b(t_list	*a, t_list	*b, t_nb_oper	*op)
 {
-	if (b->head->value > op->piv_b)
+	if (b->head->value <= op->piv_b)
 	{
+		rotate_stack(b, B);
+		op->rb++;
+	}
+	else
+	{	
 		push_stack(b, a, A);
 		op->pa++;
 		if (a->head->value <= op->piv)
@@ -23,33 +29,28 @@ static void	part_b(t_list	*a, t_list	*b, s_nb_oper	*op)
 			op->ra++;
 		}
 	}
-	else
-	{
-		rotate_stack(b, B);
-		op->rb++
-	}
 }
 
-static void	reversing_ra(t_list	*a, t_list	*b, s_nb_oper	*op, int	*count)
+static void	reversing_ra(t_list	*a, t_list	*b, t_nb_oper	*op)
 {
 	int	i;
 	int	j;
 	
 	i = op->rb;
-	j = op->ra - op->rb;
+	j = op->ra - i;
 	while (i--)
 		reverse_rotate_a_b(a, b);
 	while (j--)
 		reverse_rotate(a, A);
 }
 
-static void	reversing_rb(t_list	*a, t_list	*b, s_nb_oper	*op, int	*count)
+static void	reversing_rb(t_list	*a, t_list	*b, t_nb_oper	*op)
 {
 	int	i;
 	int	j;
 	
 	i = op->ra;
-	j = op->rb - op->ra;
+	j = op->rb - i;
 	while (i--)
 		reverse_rotate_a_b(a, b);
 	while (j--)
@@ -58,22 +59,23 @@ static void	reversing_rb(t_list	*a, t_list	*b, s_nb_oper	*op, int	*count)
 
 void	sort_b(t_list	*a, t_list	*b, int	size, int	*count)
 {
-	s_nb_oper	op;
+	t_nb_oper	op;
 	int	i;
 
+	ft_printf("je passe dans le b\n");
 	(*count)++;
-	if (!small_nbr(a, b, size, A))
+	if (!small_nbr(a, b, size, B))
 		return ;
 	init_oper(&op);
 	init_pivot(b, size, &op);
 	i = size;
 	while (i--)
 		part_b(a, b, &op);
-	sort_a(a, b, (op->pa - op->ra), count);
+	sort_a(a, b, (op.pa - op.ra), count);
 	if (op.ra > op.rb)
-		reversing_ra(a, b, &op, count);
+		reversing_ra(a, b, &op);
 	else
-		reversing_rb(a, b, &op, count);
-	sort_a(a, b, op->ra, count);
-	sort_b(a, b, op->rb, count);
+		reversing_rb(a, b, &op);
+	sort_a(a, b, op.ra, count);
+	sort_b(a, b, op.rb, count);
 }

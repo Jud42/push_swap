@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 09:51:26 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 19:12:22 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:34:45 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	head_min(t_list	*a, int	max)
 {
 	if (a->size == 3)
 	{
-		if (a->top->next == max)
+		if (a->head->next->value == max)
 		{
 			reverse_rotate(a, A);
 			swap_stack(a, A);
@@ -24,7 +24,7 @@ static void	head_min(t_list	*a, int	max)
 	}
 	else
 	{
-		if (a->top->value == max)
+		if (a->head->value == max)
 		{
 			rotate_stack(a, A);
 			swap_stack(a, A);
@@ -58,7 +58,7 @@ static void	last_min(t_list	*a, int max)
 {
 	if (a->size == 3)
 	{
-		if (a->head->value = max)
+		if (a->head->value == max)
 			swap_stack(a, A);
 		reverse_rotate(a, A);
 	}
@@ -73,13 +73,13 @@ static void	last_min(t_list	*a, int max)
 	}	
 }
 
-void	three_mng_a(t_list	*a, int	sz)
+void	three_mng_a(t_list	*a, int	size)
 {
 	int	min;
 	int	max;
 
-	min = min_value(a, sz);
-	max = max_value(a, sz);
+	min = min_value(a, size);
+	max = max_value(a, size);
 	if (a->head->value == min)
 		head_min(a, max);
 	else if (a->head->next->value == min)

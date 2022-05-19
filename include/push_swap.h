@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:33:11 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 13:40:12 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 15:46:23 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,28 @@ typedef	struct	s_nb_oper{
 	int	rb;
 	int	pa;
 	int	pb;
+	int	piv;
+	int	piv_b;
 }	t_nb_oper;
 
-void	init_stack(t_list *stack);
-void	init_oper(s_nb_oper *op);
 void	parse_in(char **argv, t_list *stack);
-void	last_node(t_list *li);
-int		list_size(t_list *li);
+
+void	init_stack(t_list *stack);
+void	init_oper(t_nb_oper *op);
+void	init_pivot(t_list *li, int size, t_nb_oper *op);
+
 void	print_list(t_list *a, t_list *b);
+
+int		list_size(t_list *li);
+t_node	*last_node(t_list *li);
 void	insert_back_list(t_list	*li, int nbr);
 void	insert_front_list(t_list *li, int nbr);
 void	delete_back_list(t_list *li);
 void	delete_front_list(t_list *li);
 void	clear_list(t_list *li);
-void	swap_stack(t_list *li, char *s);
-void	swap_a_b(t_list *a, t_list *b, int flag);
+
+void	swap_stack(t_list *li, int flag);
+void	swap_a_b(t_list *a, t_list *b);
 void	push_stack(t_list *from, t_list *to, int flag);
 void	rotate_stack(t_list *li, int flag);
 void	rotate_a_b(t_list *a, t_list *b);
@@ -65,20 +72,22 @@ void	reverse_rotate_a_b(t_list *a, t_list *b);
 
 int		max_value(t_list *li, int size);
 int		min_value(t_list *li, int size);
-int		mid_five_sort(t_list *li, int size);
+int		mid_five_sort(t_list *li);
 int		middle_list(t_list *li);
 
 int		check_need_sort(t_list *li);
 
 void	three_sort(t_list *li);
+
+int		small_nbr(t_list *a, t_list *b, int size, int flag);
 void	five_sort(t_list *a, t_list *b);
-void	big_sort(t_list *a, t_list *b);
+void	sort_a(t_list *a, t_list *b, int size, int *count);
+void	sort_b(t_list *a, t_list *b, int size, int *count);
 void	push_swap(t_list *a, t_list *b);
 
-void	partition_a(t_list *a, t_list *b);
-
-void	three_mng_a(t_list *a, int sz);
-void	three_mng_b(t_list *a, int sz);
-
+void	two_mng(t_list *a, t_list *b, int flag);
+void	three_mng_a(t_list *a, int size);
+void	three_mng_b(t_list *a, t_list *b, int size);
+void	five_mng(t_list *a, t_list *b, int size, int flag);
 	
 # endif

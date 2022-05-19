@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/18 13:37:13 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 15:49:07 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	push_follow(t_list	*from, t_list	*to)
 			to->head->prev->next = to->head;
 			to->head = to->head->prev;
 			from->size--;
+		}
 }	
 
 void	push_stack(t_list	*from, t_list	*to, int	flag)
@@ -87,25 +88,25 @@ void	push_stack(t_list	*from, t_list	*to, int	flag)
 		ft_putendl_fd("pa", 1);
 	else if (flag == B)	
 		ft_putendl_fd("pb", 1);
+	to->last = last_node(to);
 }
 /*--------------------------------------------------*/
 void	rotate_stack(t_list	*li, int	flag)
 {
-	if (li->head == NULL || li->head->next == NULL)
-		return ;
 	t_node	*temp;
 	t_node	*temp_nxt;
-
-	temp	= li->head;
+	
+	if (li->size < 2)
+		return ;
+	
+	temp = li->head;
 	temp_nxt = li->head->next;
-	/*-------*/
 	li->last->next = temp;
 	temp->prev = li->last;
 	temp->next = NULL;
-	temp_nxt->prev = NULL;
-	li->head = temp_nxt;
 	li->last = temp;
-	/*---------*/
+	li->head = temp_nxt;
+	li->head->prev = NULL;
 	if (flag == A)
 		ft_putendl_fd("ra", 1);
 	else if (flag == B)
