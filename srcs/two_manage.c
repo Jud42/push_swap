@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:54:33 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 14:57:08 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 22:06:50 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,23 @@ void	two_mng(t_list	*a, t_list	*b, int flag)
 			swap_stack(b, B);
 		push_stack(b, a, A);
 		push_stack(b, a, A);
+	}
+}
+
+void	uno_dos_tres(t_list	*a, t_list	*b, int	size, int	flag)
+{
+	if (size == 3)
+	{
+		if (flag == A)
+			three_mng_a(a, size);	
+		else
+			three_mng_b(a, b, size);
+	}
+	else if (size == 2)
+		two_mng(a, b, flag);
+	else if (size == 1)
+	{
+		if (flag == B)
+			push_stack(b, a, A);
 	}
 }

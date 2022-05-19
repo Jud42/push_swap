@@ -6,15 +6,15 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:36:34 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/13 14:25:45 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 22:15:36 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_msg(char	*s)
+void	error_msg(void)
 {
-	ft_printf("Error\n%s\n", s);
+	ft_putendl_fd("Error", 1);
 	exit (1);
 }
 /*-----------------------------*/
@@ -22,25 +22,25 @@ void	error_msg(char	*s)
 void	check_dup_sort(char	**av, int i)
 {
 	int	j;
-	int	sort;
+	int	need_sort;
 
-	sort = 0;
+	need_sort = 0;
 	while (av[++i])
 	{
 		if (ft_atoi(av[i]) > INT_MAX || ft_atoi(av[i]) < INT_MIN)
-			error_msg("Integer above Max or below Min for type INT");
+			error_msg();
 		j = i + 1;
 		while (av[j])
 		{
 			if (ft_atoi(av[i]) == ft_atoi(av[j]) || ft_atoi(av[i]) > INT_MAX)
-				error_msg("There are a integer duplicate\n");
+				error_msg();
 			if (ft_atoi(av[i]) > ft_atoi(av[j]))
-				sort++;
+				need_sort++;
 			j++;
 		}
 	}
-	if (sort == false)
-		exit (1);
+	if (need_sort == false)
+		exit (0);
 	return ;
 }
 /*--------------------------------*/
@@ -79,7 +79,7 @@ void	tab_split(char *s, t_list	*stack)
 		if(check_alpha(tab_s[i]))
 		{
 			free(tab_s);
-			error_msg("There are a caracter in your arg\n");
+			error_msg();
 		}
 		insert_back_list(stack, ft_atoi(tab_s[i]));
 	}
@@ -95,7 +95,7 @@ void	tab(char **av, t_list	*stack)
 	while (av[++i])
 	{	
 		if(check_alpha(av[i]))
-			error_msg("There are a caracter in your arg\n");
+			error_msg();
 		insert_back_list(stack, ft_atoi(av[i]));
 	}
 }

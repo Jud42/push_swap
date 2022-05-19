@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:58:40 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 15:49:07 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:06:58 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	push_follow(t_list	*from, t_list	*to)
 			from->head = from->head->next;
 			from->head->prev = NULL;
 			to->head->next = NULL;
-			from->size--;
 		}
 		else 
 		{
@@ -61,7 +60,6 @@ static void	push_follow(t_list	*from, t_list	*to)
 			from->head->prev = NULL;
 			to->head->prev->next = to->head;
 			to->head = to->head->prev;
-			from->size--;
 		}
 }	
 
@@ -83,11 +81,12 @@ void	push_stack(t_list	*from, t_list	*to, int	flag)
 	}	
 	else
 		push_follow(from, to);
-	to->size++;
-	if	(flag == A)
+	if (flag == A)
 		ft_putendl_fd("pa", 1);
 	else if (flag == B)	
 		ft_putendl_fd("pb", 1);
+	to->size++;
+	from->size--;
 	to->last = last_node(to);
 }
 /*--------------------------------------------------*/

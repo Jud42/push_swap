@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:52:15 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 15:31:08 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 22:11:03 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,14 @@ int	small_nbr(t_list	*a, t_list	*b, int	size, int	flag)
 {
 	if (size <= 3)
 	{	
-		if (size == 3)
-		{
-			if (flag == A)
-				three_mng_a(a, size);
-			else
-				three_mng_b(a, b, size);
-			return (0);
-		}
-		else if (size == 2)
-			two_mng(a, b, flag);
-		else if (size == 1)
-		{
-			if (flag == B)
-			{
-				push_stack(b, a, A);
-				return (0);
-			}
-		}
+		uno_dos_tres(a, b, size, flag);
 		return (0);
-		ft_putendl_fd("je passe par ici\n", 1);
 	}
 	else if (size == 5)
 	{	
-		ft_printf("je passe par ici\n");
 		five_mng(a, b, size, flag);
 		return (0);
 	}
-
-	ft_printf("j'ai rien a faire par ici\n");
 	return (1);
 }
 /*-----------------------------------------------------------*/
@@ -115,7 +94,6 @@ void	sort_a(t_list	*a, t_list	*b, int	size, int	*count)
 	t_nb_oper	op;
 	int	i;
 	
-	ft_printf("%d => size dans sort\n", size);
 	if (!small_nbr(a, b, size, A))
 		return ;
 	init_oper(&op);
@@ -123,7 +101,6 @@ void	sort_a(t_list	*a, t_list	*b, int	size, int	*count)
 	i = size;
 	while (i--)
 		part_a(a, b, &op);
-	ft_printf("test last vallue => %d\n", b->last->value);
 	if (op.ra > op.rb)
 		reversing_a(a, b, &op, count);
 	else

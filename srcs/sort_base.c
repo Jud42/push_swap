@@ -6,14 +6,14 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:48:44 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 11:50:53 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:48:48 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
 
 // set the pivot and place it 
 
-void	three_sort(t_list	*li)
+static	void	three_sort(t_list	*li)
 {
 	int	h;
 	int	n;
@@ -33,7 +33,32 @@ void	three_sort(t_list	*li)
 	}
 }
 
-void	five_sort(t_list	*a, t_list	*b)
+static	void	for_sort(t_list	*a,	t_list	*b)
+{
+	int	min;
+	int	max;
+	int	i;
+
+	i = -1;
+	min	= min_value(a, a->size);
+	max = max_value(a, a->size);
+	while (++i < a->size)
+	{
+		if (a->head->value == min || a->head->value == max)
+		 {
+		 	push_stack(a, b, B);
+			break ;
+		 }
+		else
+			reverse_rotate(a, A);	
+	}
+	three_sort(a);
+	push_stack(b, a, A);
+	if (a->head->value == max)
+		rotate_stack(a, A);
+}
+
+static	void	five_sort(t_list	*a, t_list	*b)
 {
 	int	mid;
 
@@ -52,4 +77,17 @@ void	five_sort(t_list	*a, t_list	*b)
 		swap_stack(b, B);
 	while (b->head)
 		push_stack(b, a, A);
+}
+
+void	little_sort(t_list	*a, t_list	*b)
+{
+	if (a->size == 2)
+		swap_stack(a, A);
+	else if (a->size == 3)
+		three_sort(a);
+	else if (a->size == 4)
+		for_sort(a, b);
+	else if (a->size == 5)
+		five_sort(a, b);
+
 }

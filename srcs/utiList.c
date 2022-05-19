@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 15:50:01 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:56:18 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	delete_back_list(t_list	*li)
 {
 	if (!li->head)
 		return ;
-	else if (li->head->next == NULL)
+	else if (li->size == 1)
 	{
 		free(li->head);
 		li->head = NULL;

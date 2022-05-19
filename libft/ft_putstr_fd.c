@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 11:26:04 by rmamison          #+#    #+#             */
-/*   Updated: 2021/11/03 11:33:52 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:25:33 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	if (!s || !fd)
+	int	i;
+
+	i = 0;
+	if (!s[i] || !fd)
 		return ;
-	while (*s)
-		ft_putchar_fd(*s++, fd);
+	while (s[i])
+		ft_putchar_fd(s[i++], fd);
 }

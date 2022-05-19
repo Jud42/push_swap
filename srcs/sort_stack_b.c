@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:52:15 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 14:54:24 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/19 22:22:45 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	sort_b(t_list	*a, t_list	*b, int	size, int	*count)
 	t_nb_oper	op;
 	int	i;
 
-	ft_printf("je passe dans le b\n");
 	(*count)++;
 	if (!small_nbr(a, b, size, B))
 		return ;
@@ -71,7 +70,7 @@ void	sort_b(t_list	*a, t_list	*b, int	size, int	*count)
 	i = size;
 	while (i--)
 		part_b(a, b, &op);
-	sort_a(a, b, (op.pa - op.ra), count);
+	sort_a(a, b, op.pa - op.ra, count);
 	if (op.ra > op.rb)
 		reversing_ra(a, b, &op);
 	else
