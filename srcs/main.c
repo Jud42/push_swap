@@ -20,13 +20,14 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		exit(1);
 	init_stack(&stack_a);
-	parse_in(argv, &stack_a);
-//	ft_printf("size => a %d\n", stack_a.size);	
+	parse_in(argc, argv, &stack_a);
+	ft_printf("size => a %d\n", stack_a.size);	
 	init_stack(&stack_b);
-//	print_list(&stack_a, &stack_b);
+	print_list(&stack_a, &stack_b);
 	push_swap(&stack_a, &stack_b);
-//	print_list(&stack_a, &stack_b);
+	print_list(&stack_a, &stack_b);
 	clear_list(&stack_a);
-//	ft_printf("size a => %d, size b => %d\n", stack_a.size, stack_b.size);
+	print_list(&stack_a, &stack_b);
+	ft_printf("size a => %d, size b => %d\n", stack_a.size, stack_b.size);
 	return (0);
 }

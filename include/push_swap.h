@@ -46,7 +46,7 @@ typedef	struct	s_nb_oper{
 	int	piv_b;
 }	t_nb_oper;
 
-void	parse_in(char **argv, t_list *stack);
+void	parse_in(int argc, char **argv, t_list *stack);
 
 void	init_stack(t_list *stack);
 void	init_oper(t_nb_oper *op);

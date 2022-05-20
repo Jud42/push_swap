@@ -17,6 +17,7 @@ void	error_msg(void)
 	ft_putendl_fd("Error", 1);
 	exit (1);
 }
+
 /*-----------------------------*/
 
 void	check_dup_sort(char	**av, int i)
@@ -44,69 +45,61 @@ void	check_dup_sort(char	**av, int i)
 	return ;
 }
 /*--------------------------------*/
-int	no_dig_check(int	c)
+int	check_numeric(char	*s)
 {
-	if (c >= 48 && c <= 57)
-		return (0);
-	return (1);
-}
+	int	i;
 
-int	check_alpha(char	*s)
-{
-	char	*temp = s;
-	while((int)*temp)
+	i = -1;
+	while(s[++i])
 	{
-		if (*temp == '-')
-			temp++;
-		if (ft_isalpha(*temp) || no_dig_check(*temp))
-			return (1);
-		temp++;
+		if (s[i] == '-' || s[i] == '+')
+			i++;
+		if (!ft_isdigit(s[i]))
+			return (0);
 	}
-	return (0);
+	return (1);
 }
 /*---------------------------------*/
 
 void	tab_split(char *s, t_list	*stack)
 {
+	int	i;
+	int	no_num;
 	char	**tab_s;
-	int		i;
 
 	i = -1;
+	no_num = 0;
 	tab_s = ft_split(s, ' ');
-	check_dup_sort(tab_s, i);
+	//check_dup_sort(tab_s, i);
+	ft_printf("b\n");
 	while (tab_s[++i])
 	{
-		if(check_alpha(tab_s[i]))
+		if(!check_numeric(tab_s[i]))
 		{
-			free(tab_s);
-			error_msg();
+			no_num = 1;
+			break ;
 		}
 		insert_back_list(stack, ft_atoi(tab_s[i]));
+		free(tab_s[i]);
 	}
+	free(tab_s[i]);
+	if (no_num == 1)
+		error_msg();
 }
-/*-----------------------------------*/
 
-void	tab(char **av, t_list	*stack)
-{
-	int	i;
-	
-	i = 0;
-	check_dup_sort(av, i);
-	while (av[++i])
-	{	
-		if(check_alpha(av[i]))
-			error_msg();
-		insert_back_list(stack, ft_atoi(av[i]));
-	}
-}
 /*---------------------------------------------*/
 
-void	parse_in(char	**argv, t_list	*stack)
+void	parse_in(int	argc, char	**argv, t_list	*stack)
 {	
-	if (ft_strchr(argv[1], ' '))
-		tab_split(argv[1], stack);
-	else
-		tab(argv, stack);
+	int	i;
+
+	if (!argv[1])
+		error_msg();
+	i = 0;
+	while (++i < argc)
+		tab_split(argv[i], stack);
+	
+	ft_printf("a");
 	if (stack->size == 0)
-		exit (EXIT_FAILURE);
+		exit (1);
 }

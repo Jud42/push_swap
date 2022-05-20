@@ -18,10 +18,7 @@ t_node	*get_new_node(int	x)
 
 	new = malloc(sizeof(*new));
 	if (!new)
-	{
-		ft_printf("Error\n Allocation memory failure\n");
-		exit(1);
-	}
+		return (NULL);
 	new->value = x;
 	new->next = NULL;
 	new->prev = NULL;
@@ -152,7 +149,7 @@ void	delete_front_list(t_list	*li)
 
 void	clear_list(t_list *li)
 {
-	if (!li)
+	if (!li->head)
 		return ;
 	while (li->head != NULL)
 		delete_back_list(li);
