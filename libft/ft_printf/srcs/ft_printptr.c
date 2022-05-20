@@ -6,11 +6,12 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:19:56 by rmamison          #+#    #+#             */
-/*   Updated: 2021/11/17 20:30:20 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:11:33 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	count_nbr(uintptr_t num)
 {
@@ -44,7 +45,7 @@ static void	put_nbr(uintptr_t num)
 int	ft_printptr(unsigned long long ptr)
 {
 	int	larg_print;
-
+	printf("%llu\n", ptr);
 	larg_print = 0;
 	larg_print += write(1, "0x", 2);
 	if (ptr == 0)

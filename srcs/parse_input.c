@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:36:34 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 22:15:36 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 15:36:12 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	tab_split(char *s, t_list	*stack)
 	no_num = 0;
 	tab_s = ft_split(s, ' ');
 	//check_dup_sort(tab_s, i);
-	ft_printf("b\n");
 	while (tab_s[++i])
 	{
 		if(!check_numeric(tab_s[i]))

@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 21:56:18 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 20:11:12 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ int	max_value(t_list	*li, int	size)
 	int	max;
 	max  = 0;
 	h = li->head;
-	while (h && size--)
+	while (size-- && h)
 	{
 		if (max < h->value)
 			max = h->value;
@@ -174,21 +174,19 @@ int	max_value(t_list	*li, int	size)
 int	min_value(t_list	*li, int	size)
 {
 	t_node	*h;
-
 	int	min;
-	if (!li->head)
-		return (0);
+	
 	min = li->head->value;
 	h = li->head;
-	while (h && size--)
+	while (size-- && h)
 	{
-		if (min >= h->value)
+		if (min > h->value)
 			min = h->value;
 		h = h->next;
 	}
 	return (min);
 }
-
+/*
 int	middle_list(t_list	*li)
 {
 	t_node	*slow;
@@ -205,7 +203,7 @@ int	middle_list(t_list	*li)
 	}
 	ret = slow->value;
 	return (ret);
-}
+}*/
 
 int	mid_five_sort(t_list	*li)
 {

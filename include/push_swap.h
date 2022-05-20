@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 11:33:11 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 21:48:50 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:59:28 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef	struct	s_nb_oper{
 	int	rb;
 	int	pa;
 	int	pb;
-	int	piv;
-	int	piv_b;
+	long	piv;
+	long	piv_b;
 }	t_nb_oper;
 
 void	parse_in(int argc, char **argv, t_list *stack);
@@ -84,8 +84,8 @@ void	push_swap(t_list *a, t_list *b);
 void	two_mng(t_list *a, t_list *b, int flag);
 void	three_mng_a(t_list *a, int size);
 void	three_mng_b(t_list *a, t_list *b, int size);
+void	for_mng_b(t_list *a, t_list *b, int size);
 void	uno_dos_tres(t_list *a, t_list *b, int size, int flag);
 void	five_mng(t_list *a, t_list *b, int size, int flag);
-int		small_nbr(t_list *a, t_list *b, int size, int flag);
 	
 # endif

@@ -6,22 +6,22 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:52:15 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 22:11:03 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:15:56 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-int	small_nbr(t_list	*a, t_list	*b, int	size, int	flag)
+static int	small_nbr(t_list	*a, t_list	*b, int	size)
 {
 	if (size <= 3)
 	{	
-		uno_dos_tres(a, b, size, flag);
+		uno_dos_tres(a, b, size, A);
 		return (0);
 	}
 	else if (size == 5)
 	{	
-		five_mng(a, b, size, flag);
+		five_mng(a, b, 5, A);
 		return (0);
 	}
 	return (1);
@@ -93,8 +93,7 @@ void	sort_a(t_list	*a, t_list	*b, int	size, int	*count)
 {
 	t_nb_oper	op;
 	int	i;
-	
-	if (!small_nbr(a, b, size, A))
+	if (!small_nbr(a, b, size))
 		return ;
 	init_oper(&op);
 	init_pivot(a, size, &op);

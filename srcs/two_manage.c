@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 15:54:33 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 22:06:50 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:52:17 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,15 @@ void	uno_dos_tres(t_list	*a, t_list	*b, int	size, int	flag)
 		if (flag == B)
 			push_stack(b, a, A);
 	}
+}
+
+void	for_mng_b(t_list	*a,	t_list	*b, int	size)
+{
+	int	max;
+	
+	max = max_value(b, size);
+	while (b->head->value != max)
+		rotate_stack(b, B);
+	push_stack(b, a, A);
+	three_mng_b(a, b, size);
 }

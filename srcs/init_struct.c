@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:25:39 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/19 22:14:43 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:12:20 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void	init_oper(t_nb_oper	*op)
 	op->rb = 0;
 	op->pa = 0;
 	op->pb = 0;
-	op->piv = 0;
-	op->piv_b = 0;
 }
 
 void	init_pivot(t_list	*li, int	size, t_nb_oper	*op)
 {
-	int	min;
-	int	max;
+	long	min;
+	long	max;
 
 	min = min_value(li, size);
 	max = max_value(li, size);
