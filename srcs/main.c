@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	push_swap(&stack_a, &stack_b);
 	print_list(&stack_a, &stack_b);
 	clear_list(&stack_a);
-	//print_list(&stack_a, &stack_b);
+	print_list(&stack_a, &stack_b);
 //	ft_printf("size a => %d, size b => %d\n", stack_a.size, stack_b.size);
 	return (0);
 }

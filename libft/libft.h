@@ -34,7 +34,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*ft_itoa(int n);
-long int	ft_atoi(const char *str);
+int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
 void	ft_bzero(void *s, size_t n);

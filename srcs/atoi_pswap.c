@@ -9,12 +9,12 @@
 /*   Updated: 2022/05/04 23:11:09 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_atoi(const char *str)
+int	atoi_pswap(const char *str)
 {
-	int	conv;
-	int	negative;
+	long long	conv;
+	int		negative;
 
 	conv = 0;
 	negative = 1;
@@ -25,7 +25,13 @@ int	ft_atoi(const char *str)
 		if (*str++ == '-')
 			negative = -1;
 	}
-	while (*str && (ft_isdigit(*str)))
-		conv = conv * 10 + (*str++ - '0');
-	return (conv * negative);
+	while (*str)
+	{
+		conv = conv * 10 + (*str - '0');
+		str++;
+	}
+	conv *= negative;
+	if (conv > INT_MAX || conv < INT_MIN)
+		error_msg();
+	return (conv);
 }

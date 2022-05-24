@@ -141,9 +141,9 @@ void	delete_front_list(t_list	*li)
 	t_node	*temp;
 
 	temp = li->head->next;
-	li->head = temp;
 	temp->prev = NULL;
-	free(temp->prev);
+	free(li->head);
+	li->head = temp;
 	li->size--;
 }
 
@@ -152,7 +152,7 @@ void	clear_list(t_list *li)
 	if (!li->head)
 		return ;
 	while (li->head != NULL)
-		delete_back_list(li);
+		delete_front_list(li);
 }
 
 int	max_value(t_list	*li, int	size)
@@ -180,7 +180,7 @@ int	min_value(t_list	*li, int	size)
 	h = li->head;
 	while (size-- && h)
 	{
-		if (min > h->value)
+		if (h->value < min)
 			min = h->value;
 		h = h->next;
 	}
@@ -239,22 +239,24 @@ int	mid_five_sort(t_list	*li)
 
 int	check_need_sort(t_list	*li)
 {
-	t_node	*av;
-	t_node	*aft;
+	t_node	*temp;
+	t_node	*i;
 	int	sort;
-
-	av = li->head;
-	aft = li->head->next;
+	
 	sort = 0;
-	while (aft)
+	temp = li->head;
+	while (temp && temp->next)
 	{
-		if (aft->value < av->value)
-		{
-			sort++;
-			return (sort);
+		i = temp->next;
+		while (i)
+		{	
+			if (temp->value == i->value)
+				return (0);
+			else if (temp->value > i->value)
+				sort = 1;
+			i = i->next;
 		}
-		aft = aft->next;
-		av = av->next;
+		temp = temp->next;
 	}
 	return (sort);
 }

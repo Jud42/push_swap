@@ -32,11 +32,11 @@ void	init_oper(t_nb_oper	*op)
 
 void	init_pivot(t_list	*li, int	size, t_nb_oper	*op)
 {
-	long	min;
-	long	max;
+	long	min_l;
+	long	max_l;
 
-	min = min_value(li, size);
-	max = max_value(li, size);
-	op->piv = (min + max) / 2;
-	op->piv_b = (op->piv + min) / 2;
+	min_l = min_value(li, size);
+	max_l = max_value(li, size);
+	op->piv = (min_l + max_l) / 2;
+	op->piv_b = (min_l + op->piv) / 2;
 }

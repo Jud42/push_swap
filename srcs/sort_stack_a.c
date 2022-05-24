@@ -84,7 +84,7 @@ static void	reversing_b(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 	else
 	{
 		i = op->rb;
-		while (j--)
+		while (i--)
 			reverse_rotate(b, B);
 	}
 }

@@ -24,7 +24,7 @@ static void	head_min(t_list	*a, int	max)
 	}
 	else
 	{
-		if (a->head->value == max)
+		if (a->head->next->value == max)
 		{
 			rotate_stack(a, A);
 			swap_stack(a, A);

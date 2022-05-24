@@ -14,16 +14,16 @@
 
 static int  small_nbr(t_list    *a, t_list  *b, int size)
 {
-		if (size <= 3)
-		{
-			uno_dos_tres(a, b, size, B);
-			return (0);
-		}
-		else if (size == 5)
-		{
-			 five_mng(a, b, 5, B);
+	if (size <= 3)
+	{
+		uno_dos_tres(a, b, size, B);
+		return (0);
+	}
+	else if (size == 5)
+	{
+		five_mng(a, b, 5, B);
 	         return (0);
- 		}
+ 	}
  	return (1);
 }
 /*-----------------------------------------------------------*/
@@ -93,4 +93,5 @@ void	sort_b(t_list	*a, t_list	*b, int	size, int	*count)
 		reversing_rb(a, b, &op);
 	sort_a(a, b, op.ra, count);
 	sort_b(a, b, op.rb, count);
+	print_list(a, b);
 }

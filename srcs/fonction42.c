@@ -144,8 +144,8 @@ void	reverse_rotate(t_list	*li, int flag)
 
 void	reverse_rotate_a_b(t_list	*a, t_list	*b)
 {
-	reverse_rotate(a, 0);
-	reverse_rotate(b, 0);
+	reverse_rotate(a, 4);
+	reverse_rotate(b, 4);
 	ft_putendl_fd("rrr", 1);
 }
 

@@ -46,7 +46,9 @@ typedef	struct	s_nb_oper{
 	long	piv_b;
 }	t_nb_oper;
 
+void	error_msg(void);
 void	parse_in(int argc, char **argv, t_list *stack);
+int	atoi_pswap(const char	*str);
 
 void	init_stack(t_list *stack);
 void	init_oper(t_nb_oper *op);
