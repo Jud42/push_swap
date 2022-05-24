@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 13:36:34 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 15:36:12 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:57:58 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_numeric(char	*s)
 	int	i;
 
 	i = -1;
-	while(s[++i])
+	while (s[++i])
 	{
 		if (s[i] == '-' || s[i] == '+')
 			i++;
@@ -37,24 +37,23 @@ int	check_numeric(char	*s)
 
 void	tab_split(char *s, t_list	*stack)
 {
-	int	i;
+	int		i;
 	char	**tab_s;
 
 	i = -1;
 	tab_s = ft_split(s, ' ');
 	while (tab_s[++i])
 	{
-		if(!check_numeric(tab_s[i]))
+		if (!check_numeric(tab_s[i]))
 			error_msg();
 		insert_back_list(stack, atoi_pswap(tab_s[i]));
 		free(tab_s[i]);
 	}
 	free(tab_s);
 }
-
 /*---------------------------------------------*/
 
-void	parse_in(int	argc, char	**argv, t_list	*stack)
+void	parse_in(int argc, char **argv, t_list *stack)
 {	
 	int	i;
 
@@ -63,12 +62,38 @@ void	parse_in(int	argc, char	**argv, t_list	*stack)
 	i = 0;
 	while (++i < argc)
 		tab_split(argv[i], stack);
-
 	if (!check_need_sort(stack))
 	{	
 		clear_list(stack);
-		error_msg();
+		exit(0);
 	}
+	else if (check_need_sort(stack) == DUP)
+		error_msg();
 	if (stack->size == 0)
 		exit (1);
+}
+/*--------------------------------------------*/
+
+int	check_need_sort(t_list *li)
+{
+	t_node	*temp;
+	t_node	*i;
+	int		sort;
+
+	sort = 0;
+	temp = li->head;
+	while (temp && temp->next)
+	{
+		i = temp->next;
+		while (i)
+		{
+			if (temp->value == i->value)
+				return (DUP);
+			else if (temp->value > i->value)
+				sort = true;
+			i = i->next;
+		}
+		temp = temp->next;
+	}
+	return (sort);
 }

@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:19:56 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 20:11:33 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:56:45 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	put_nbr(uintptr_t num)
 int	ft_printptr(unsigned long long ptr)
 {
 	int	larg_print;
-	printf("%llu\n", ptr);
+
 	larg_print = 0;
 	larg_print += write(1, "0x", 2);
 	if (ptr == 0)

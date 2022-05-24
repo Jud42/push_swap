@@ -6,32 +6,10 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/05 11:48:44 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 17:31:43 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:05:08 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
-
-// set the pivot and place it 
-
-static	void	three_sort(t_list	*li)
-{
-	int	h;
-	int	n;
-	int	l;
-
-	while (check_need_sort(li))
-	{
-		h = li->head->value;
-		n = li->head->next->value;
-		l = li->last->value;
-		if (h > n && h > l)
-			rotate_stack(li, A);
-		if (h > n && h < l)
-			swap_stack(li, A);
-		if (l < n && n > h)
-			reverse_rotate(li, A);
-	}
-}
 
 static	void	for_sort(t_list	*a,	t_list	*b)
 {
@@ -40,23 +18,24 @@ static	void	for_sort(t_list	*a,	t_list	*b)
 	int	i;
 
 	i = -1;
-	min	= min_value(a, a->size);
+	min = min_value(a, a->size);
 	max = max_value(a, a->size);
 	while (++i < a->size)
 	{
-		if (a->head->value == min || a->head->value == max)
-		 {
-		 	push_stack(a, b, B);
+		if (a->head->pos == min || a->head->pos == max)
+		{
+			push_stack(a, b, B);
 			break ;
-		 }
+		}
 		else
-			reverse_rotate(a, A);	
+			reverse_rotate(a, A);
 	}
-	three_sort(a);
+	three_mng_a(a, a->size);
 	push_stack(b, a, A);
-	if (a->head->value == max)
+	if (a->head->pos == max)
 		rotate_stack(a, A);
 }
+/*--------------------------------------*/
 
 static	void	five_sort(t_list	*a, t_list	*b)
 {
@@ -72,22 +51,20 @@ static	void	five_sort(t_list	*a, t_list	*b)
 		if (b->size == 2)
 			break ;
 	}
-	three_sort(a);
+	three_mng_a(a, a->size);
 	if (b->head->value < b->head->next->value)
 		swap_stack(b, B);
 	while (b->head)
 		push_stack(b, a, A);
 }
+/*-----------------------------------------*/
 
-void	little_sort(t_list	*a, t_list	*b)
+void	easy_sort(t_list	*a, t_list	*b)
 {
-	if (a->size == 2)
-		swap_stack(a, A);
-	else if (a->size == 3)
-		three_sort(a);
+	if (a->size <= 3)
+		uno_dos_tres(a, b, a->size, A);
 	else if (a->size == 4)
 		for_sort(a, b);
 	else if (a->size == 5)
 		five_sort(a, b);
-
 }

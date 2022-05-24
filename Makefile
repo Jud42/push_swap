@@ -1,7 +1,15 @@
 
 NAME		= push_swap
 LIB_PRINTF_DIR		= ./libft/ft_printf
-SRCS	= main.c	parse_input.c	init_struct.c	utiList.c	print_list.c	fonction42.c	sort_stack_a.c	sort_stack_b.c five_manage.c	three_manage_a.c	three_manage_b.c	two_manage.c	push_swap.c	sort_base.c	atoi_pswap.c	
+
+SRCS	= main.c	push_swap.c	\
+		  manage_stack/five_mng.c	manage_stack/mng_until_five.c	\
+		  manage_stack/three_mng_a.c	manage_stack/three_mng_b.c	\
+		  operation42/rotate_reverse.c	operation42/swap_push.c	\
+		  parse_init/init_struct.c parse_init/parse_input.c	\
+		  sort_algo/sort_stack_a.c	sort_algo/sort_stack_b.c	sort_until_five.c	\
+		  utils/atoi_pswap.c	utils/find_middle.c	utils/replace.c	utils/utilist.c	\
+
 DIR_S	= srcs
 DIR_O	= temp
 RM 	= rm -rf

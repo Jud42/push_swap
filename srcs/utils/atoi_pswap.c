@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 15:13:27 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/04 23:11:09 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:06:24 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "push_swap.h"
@@ -14,7 +14,7 @@
 int	atoi_pswap(const char *str)
 {
 	long long	conv;
-	int		negative;
+	int			negative;
 
 	conv = 0;
 	negative = 1;

@@ -6,13 +6,13 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 13:25:50 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 17:32:26 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 19:33:02 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static void	five_mng_a(t_list	*a, t_list	*b, int	size)
+static void	five_mng_a(t_list *a, t_list *b, int size)
 {
 	int	rot;
 	int	push;
@@ -37,10 +37,10 @@ static void	five_mng_a(t_list	*a, t_list	*b, int	size)
 			break ;
 	}
 	while (rot--)
-		reverse_rotate(a, A);	
+		reverse_rotate(a, A);
 }
 
-static void	five_mng_b(t_list	*a, t_list	*b, int	size)
+static void	five_mng_b(t_list *a, t_list *b, int size)
 {
 	int	rot;
 	int	push;
@@ -65,10 +65,10 @@ static void	five_mng_b(t_list	*a, t_list	*b, int	size)
 			break ;
 	}
 	while (rot--)
-		reverse_rotate(b, B);	
+		reverse_rotate(b, B);
 }
 
-void	five_mng(t_list	*a, t_list	*b, int	size, int flag)
+void	five_mng(t_list *a, t_list *b, int size, int flag)
 {
 	if (flag == A)
 		five_mng_a(a, b, size);

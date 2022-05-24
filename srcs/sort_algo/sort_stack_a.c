@@ -6,30 +6,15 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:52:15 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 19:15:56 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:00:31 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
+#include "push_swap.h"
 
-static int	small_nbr(t_list	*a, t_list	*b, int	size)
-{
-	if (size <= 3)
-	{	
-		uno_dos_tres(a, b, size, A);
-		return (0);
-	}
-	else if (size == 5)
-	{	
-		five_mng(a, b, 5, A);
-		return (0);
-	}
-	return (1);
-}
-/*-----------------------------------------------------------*/
 static void	part_a(t_list	*a, t_list	*b, t_nb_oper	*op)
 {
-	if (a->head->value > op->piv)
+	if (a->head->pos > op->piv)
 	{
 		rotate_stack(a, A);
 		op->ra++;
@@ -38,19 +23,20 @@ static void	part_a(t_list	*a, t_list	*b, t_nb_oper	*op)
 	{
 		push_stack(a, b, B);
 		op->pb++;
-		if (b->head->value > op->piv_b)
+		if (b->head->pos > op->piv_b)
 		{
 			rotate_stack(b, B);
 			op->rb++;
 		}
 	}
 }
+/*-----------------*/
 
 static void	reversing_a(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 {
 	int	i;
 	int	j;
-	
+
 	i = op->rb;
 	j = op->ra - i;
 	if ((*count) > 0)
@@ -58,7 +44,7 @@ static void	reversing_a(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 		while (i--)
 			reverse_rotate_a_b(a, b);
 		while (j--)
-				reverse_rotate(a, A);
+			reverse_rotate(a, A);
 	}
 	else
 	{
@@ -66,12 +52,13 @@ static void	reversing_a(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 			reverse_rotate(b, B);
 	}
 }
+/*-------------------------*/
 
 static void	reversing_b(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 {
 	int	i;
 	int	j;
-	
+
 	i = op->ra;
 	j = op->rb - i;
 	if ((*count) > 0)
@@ -79,7 +66,7 @@ static void	reversing_b(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 		while (i--)
 			reverse_rotate_a_b(a, b);
 		while (j--)
-				reverse_rotate(b, B);
+			reverse_rotate(b, B);
 	}
 	else
 	{
@@ -88,12 +75,14 @@ static void	reversing_b(t_list	*a, t_list	*b, t_nb_oper	*op, int	*count)
 			reverse_rotate(b, B);
 	}
 }
+/*-------------------------------*/
 
-void	sort_a(t_list	*a, t_list	*b, int	size, int	*count)
+void	sort_a(t_list *a, t_list *b, int size, int *count)
 {
 	t_nb_oper	op;
-	int	i;
-	if (!small_nbr(a, b, size))
+	int			i;
+
+	if (!small_nbr(a, b, size, A))
 		return ;
 	init_oper(&op);
 	init_pivot(a, size, &op);
@@ -106,5 +95,5 @@ void	sort_a(t_list	*a, t_list	*b, int	size, int	*count)
 		reversing_b(a, b, &op, count);
 	sort_a(a, b, op.ra, count);
 	sort_b(a, b, op.rb, count);
-	sort_b(a, b, (op.pb - op.rb), count);
+	sort_b(a, b, op.pb - op.rb, count);
 }

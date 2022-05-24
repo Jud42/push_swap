@@ -6,7 +6,7 @@
 /*   By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 16:57:58 by rmamison          #+#    #+#             */
-/*   Updated: 2022/05/20 20:11:12 by rmamison         ###   ########.fr       */
+/*   Updated: 2022/05/24 20:12:33 by rmamison         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node	*get_new_node(int	x)
 	if (!new)
 		return (NULL);
 	new->value = x;
+	new->pos = 0;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);
@@ -164,8 +165,8 @@ int	max_value(t_list	*li, int	size)
 	h = li->head;
 	while (size-- && h)
 	{
-		if (max < h->value)
-			max = h->value;
+		if (max < h->pos)
+			max = h->pos;
 		h = h->next;
 	}
 	return (max);
@@ -176,34 +177,16 @@ int	min_value(t_list	*li, int	size)
 	t_node	*h;
 	int	min;
 	
-	min = li->head->value;
+	min = li->head->pos;
 	h = li->head;
 	while (size-- && h)
 	{
-		if (h->value < min)
-			min = h->value;
+		if (h->pos < min)
+			min = h->pos;
 		h = h->next;
 	}
 	return (min);
 }
-/*
-int	middle_list(t_list	*li)
-{
-	t_node	*slow;
-	t_node	*fast;
-	int	ret;
-
-	ret = 0;
-	slow = li->head;
-	fast = li->head;
-	while (fast && fast->next)
-	{
-		slow = slow->next;
-		fast = fast->next->next;
-	}
-	ret = slow->value;
-	return (ret);
-}*/
 
 int	mid_five_sort(t_list	*li)
 {
@@ -251,9 +234,9 @@ int	check_need_sort(t_list	*li)
 		while (i)
 		{	
 			if (temp->value == i->value)
-				return (0);
+				return (DUP);
 			else if (temp->value > i->value)
-				sort = 1;
+				sort = true;
 			i = i->next;
 		}
 		temp = temp->next;
