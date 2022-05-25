@@ -1,5 +1,17 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rmamison <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/25 13:47:16 by rmamison          #+#    #+#              #
+#    Updated: 2022/05/25 13:52:00 by rmamison         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME			= push_swap
+
 LIB_PRINTF_DIR		= ./libft/ft_printf
 
 SRCS	= main.c push_swap.c \
@@ -12,7 +24,7 @@ SRCS	= main.c push_swap.c \
 	sort_algo/sort_stack_a.c sort_algo/sort_stack_b.c \
 	utils/find_middle.c \
 	utils/replace.c	utils/utilist.c	\
-	utils/atoi_pswap.c \	
+	utils/atoi_pswap.c	\
 
 DIR_S	= srcs
 DIR_O 	= temp
@@ -32,24 +44,23 @@ SR	=	$(addprefix $(DIR_S)/, $(SRCS))
 OB	=	$(addprefix $(DIR_O)/, $(SRCS:%.c=%.o))
 
 $(DIR_O)/%.o : $(DIR_S)/%.c
-	mkdir -p $(TEMP_DIR)
-	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
+	@mkdir -p $(TEMP_DIR)
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 $(NAME) : $(OB)
-	make -C $(LIB_PRINTF_DIR)
-	$(CC) $(CFLAGS) $(OB) $(INCLUDE) $(LIB_A) -o $@
+	@make -C $(LIB_PRINTF_DIR)
+	@$(CC) $(CFLAGS) $(OB) $(INCLUDE) $(LIB_A) -o $@
 
 all :	$(NAME)
 
 clean	:
-		$(RM) $(DIR_O)
-		make clean -C $(LIB_PRINTF_DIR)
+	@$(RM) $(DIR_O)
+	@make clean -C $(LIB_PRINTF_DIR)
 
 fclean	: clean 
-	$(RM) $(NAME)
-	make fclean -C $(LIB_PRINTF_DIR)
+	@$(RM) $(NAME)
+	@make fclean -C $(LIB_PRINTF_DIR)
 
 re	: fclean $(NAME)
 
-.PHONY:	all clean fclean re
-
+.PHONY:	all clean fclean re 
