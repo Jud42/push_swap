@@ -49,7 +49,9 @@ int	min_value(t_list *li, int size)
 static int	mid_value(int *value, int i)
 {
 	int	j;
+	int	swp;
 
+	swp = 0;
 	while (--i > 0)
 	{
 		j = -1;
@@ -69,8 +71,6 @@ static int	mid_value(int *value, int i)
 int	mid_five_sort(t_list	*li)
 {
 	int		i;
-	int		j;
-	int		swp;
 	int		value[5];
 	t_node	*temp;
 

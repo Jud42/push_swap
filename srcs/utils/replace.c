@@ -77,4 +77,5 @@ void	replace_data(t_list	*li)
 		}
 		temp = temp->next;
 	}
+	free(tab);
 }
