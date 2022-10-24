@@ -90,18 +90,18 @@ In the case where the **flag** is equal to **B** , the procedures are somewhat s
 ##### find_middle & max_min_value (in file appointed utils) 
 fuction for size less than 6
 ###### max_value()
-en parcours la liste depuis la head jusqu'au last en comparant la position (if a < b alors a = b; if (a < c , a = c ...))  jusqu'à trouver la plus grande valeur.
+we go through the list from the head to the last by comparing the position (if a < b then a = b; if (a < c , a = c ...)) until we find the largest value.
 ###### min_value()
-inverse de max_value() (if a > b alors a = b ainsi de suite ...)
+inverse of max_value() (if a > b then a = b so on...)
 ###### mid_five_sort()
-je met les 5 premiers size dans un array temporaire et j'appel *mid_value()* pour trouver le middle
+I put the first 5 sizes in a temporary array and I call *mid_value()* to find the middle
 ###### mid_value
 if value x > value x + 1
 	stock = value x + 1
 	value x + 1 = value x
 	Value x = stock
 else if value x < value x + 1
-	on avance au value x + 1 et on compare avec value x + 2 ainsi de suite...
+	we advance to value x + 1 and we compare with value x + 2 and so on...
 ###### illustration
 ![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_mid.png?raw=true)
 
