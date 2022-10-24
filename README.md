@@ -57,7 +57,7 @@ do, we have the following instructions:
 
 ## Illutstration & data structure
 ### instruction
-![[Illustration push_swap_instruction.png]]
+![Alt text](Illustration push_swap_instruction.png?raw=true)
 
 ### data structure
 ![[Illustration push_swap_data_structure 1.png]]
