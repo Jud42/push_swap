@@ -39,12 +39,12 @@ static	void	for_sort(t_list	*a,	t_list	*b)
 
 static	void	five_sort(t_list	*a, t_list	*b)
 {
-	int	mid;
+	//int	mid;
 
-	mid = mid_five_sort(a);
+	//mid = mid_five_sort(a);
 	while (1)
 	{	
-		if (a->head->value < mid)
+		if (a->head->pos < 3)
 			push_stack(a, b, B);
 		else
 			rotate_stack(a, A);
@@ -52,7 +52,7 @@ static	void	five_sort(t_list	*a, t_list	*b)
 			break ;
 	}
 	three_mng_a(a, a->size);
-	if (b->head->value < b->head->next->value)
+	if (b->head->pos < b->head->next->pos)
 		swap_stack(b, B);
 	while (b->head)
 		push_stack(b, a, A);

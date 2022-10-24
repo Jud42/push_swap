@@ -57,21 +57,21 @@ void	tab_split(char *s, t_list	*stack)
 void	parse_in(int argc, char **argv, t_list *stack)
 {	
 	int	i;
+	int	sort;
 
 	if (!argv[1])
 		error_msg();
 	i = 0;
 	while (++i < argc)
 		tab_split(argv[i], stack);
-	if (!check_need_sort(stack))
+	sort = check_need_sort(stack);
+	if (stack->size == 0 || sort == 0 || sort == DUP)
 	{	
 		clear_list(stack);
+		if (sort == DUP || stack->size == 0)
+			error_msg();
 		exit(0);
 	}
-	else if (check_need_sort(stack) == DUP)
-		error_msg();
-	if (stack->size == 0)
-		exit (1);
 }
 /*--------------------------------------------*/
 
