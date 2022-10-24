@@ -57,7 +57,7 @@ do, we have the following instructions:
 
 ## Illutstration & data structure
 ### instruction
-![Alt text](https://github.com/Jud42/push_swap/.png/Illustration push_swap_instruction.png?raw=true)
+![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_instruction.png?raw=true)
 
 ### data structure
 ![[Illustration push_swap_data_structure 1.png]]
