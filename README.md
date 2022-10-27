@@ -57,10 +57,10 @@ do, we have the following instructions:
 
 ## Illutstration & data structure
 ### instruction
-![[Illustration push_swap_instruction.png]]
+![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_instruction.png?raw=true)
 
 ### data structure
-![[Illustration push_swap_data_structure 1.png]]
+![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_data_structure%201.png?raw=true)
 ## sort
 #### small_data (small_numbers)
 Most functions take a flag as arguments, which correspond to the stack to be processed. A || B
@@ -103,7 +103,7 @@ if value x > value x + 1
 else if value x < value x + 1
 	we advance to value x + 1 and we compare with value x + 2 and so on...
 ###### illustration
-![[Illustration push_swap_mid.png]]
+![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_mid.png?raw=true)
 
 #### large_numbers
 We initialize the middle(pivot) like this:
@@ -168,6 +168,6 @@ We send to the function **sort_a** as size the **ra** and after we do the same t
 so **sort_b** repeats the same process calling itself until the size is below 6...
 
 #### illustration part_a()
-![[Illustration part_a pivot.png]]
+![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20part_a%20pivot.png?raw=true)
 
 ...
