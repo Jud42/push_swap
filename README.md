@@ -107,7 +107,7 @@ else if value x < value x + 1
 
 #### large_numbers
 We initialize the middle(pivot) like this:
->pivot stack A = MAX_VALUE A / 2
+pivot stack A = MAX_VALUE A / 2;	
 pivot stack B = mid A / 2
 
 ***sort_a()***
