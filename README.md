@@ -57,31 +57,31 @@ do, we have the following instructions:
 
 ## Illutstration & data structure
 ### instruction
-![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_instruction.png?raw=true)
+![[Illustration push_swap_instruction.png]]
 
 ### data structure
-![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_data_structure%201.png?raw=true)
+![[Illustration push_swap_data_structure 1.png]]
 ## sort
 #### small_data (small_numbers)
 Most functions take a flag as arguments, which correspond to the stack to be processed. A || B
 *small_data()* handles if size is below 6
 * if (size <= 3) **uno_dos_tres()** function is called. It is composed of 3 sub-functions: 
-	* In the case  **flag**  = **A** (*stack a*)
-		* if size == 3
-			*three_mng_a()* is called:
-			we recover max_value and min_value.
-			1. if head->value == min_value we call la fonction *head_min()*
-				* if head->next->value == max_value
-					* if flag A => `sa`, `rra`
-					* if flag = B => `rrb`
-			2. if head->next->value == min_value we call *mid_min()*
-				1. if head->value == max_value
-					* flag A => `rra` || flag B => `rb`, `sb`
-				2. else
-					* flag A => `sa` || flag B => `ra`
-			3. if last->val == min_value we call *last_min()*
-				1. if head->value == max_value
-					* flag A => `rra`, `sa` || flag b = pa pa pa
+* if size == 3
+	* three_mng_a()* is called:
+		we recover max_value and min_value.
+	1. if head->value == min_value we call la fonction *head_min()*
+		* if head->next->value == max_value
+			* if flag A => `rra`, `sa` || if flag B => `rb`
+	2. if head->next->value == min_value we call *mid_min()*
+		1. if head->value == max_value
+			*  flag A => `ra` || flag B => `rrb`, `sb`
+		1. else
+			*  flag A => `sa` || flag B => `rrb`
+	1. if last->val == min_value we call *last_min()*
+		1. if head->value == max_value
+			* flag A => `sa` , `rra`|| flag B = done
+		1. else
+			*  flag A => `rra` || flag B = `sb`
 * if (size == 5)
     In the case **flag** = **A**,  **five_mng_a()** function is called.
 	we start by retrieving the middle with *mid_five_sort()*, then we send the two smaller than middle to stack B, we call the *three_mng_a* function to sort stack A, we check stack B, making sure that the largest value  is at the top of the list before pushing on A.
@@ -90,9 +90,9 @@ In the case where the **flag** is equal to **B** , the procedures are somewhat s
 ##### find_middle & max_min_value (in file appointed utils) 
 fuction for size less than 6
 ###### max_value()
-we go through the list from the head to the last by comparing the position (if a < b then a = b; if (a < c , a = c ...)) until we find the largest value.
+We go through the list from the head to the last by comparing the position (if a < b then a = b ; if (a < c , a = c ...) until we find the largest value.
 ###### min_value()
-inverse of max_value() (if a > b then a = b so on...)
+inverse of max_value() (if a > b then a = b so on) ...
 ###### mid_five_sort()
 I put the first 5 sizes in a temporary array and I call *mid_value()* to find the middle
 ###### mid_value
@@ -103,7 +103,7 @@ if value x > value x + 1
 else if value x < value x + 1
 	we advance to value x + 1 and we compare with value x + 2 and so on...
 ###### illustration
-![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20push_swap_mid.png?raw=true)
+![[Illustration push_swap_mid.png]]
 
 #### large_numbers
 We initialize the middle(pivot) like this:
@@ -168,6 +168,6 @@ We send to the function **sort_a** as size the **ra** and after we do the same t
 so **sort_b** repeats the same process calling itself until the size is below 6...
 
 #### illustration part_a()
-![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20part_a%20pivot.png?raw=true)
+![[Illustration part_a pivot.png]]
 
 ...

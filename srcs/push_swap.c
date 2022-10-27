@@ -35,10 +35,5 @@ void	push_swap(t_list	*a, t_list	*b)
 	int	count;
 
 	count = 0;
-	if (!need_oper(a, a->size))
-		return ;
-//	if (a->size < 6)
-//		easy_sort(a, b);
-	else
-		sort_a(a, b, a->size, &count);
+	sort_a(a, b, a->size, &count);
 }

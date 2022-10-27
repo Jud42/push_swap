@@ -18,7 +18,7 @@
 # define TRUE 1
 # define A 2
 # define B 3
-# define DUP -1
+# define DUP 4
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 

@@ -68,7 +68,7 @@ void	parse_in(int argc, char **argv, t_list *stack)
 	if (stack->size == 0 || sort == 0 || sort == DUP)
 	{	
 		clear_list(stack);
-		if (sort == DUP || stack->size == 0)
+		if (sort == DUP)
 			error_msg();
 		exit(0);
 	}
