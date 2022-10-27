@@ -169,5 +169,5 @@ so **sort_b** repeats the same process calling itself until the size is below 6.
 
 #### illustration part_a()
 ![Alt text](https://github.com/Jud42/push_swap/blob/main/.png/Illustration%20part_a%20pivot.png?raw=true)
-
+___
 ...
