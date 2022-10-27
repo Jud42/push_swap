@@ -36,4 +36,11 @@ void	push_swap(t_list	*a, t_list	*b)
 
 	count = 0;
 	sort_a(a, b, a->size, &count);
+	//uncomment the following line if you want to see the numbers sorted
+	/*t_node *temp = a->head;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->value);
+		temp = temp->next;
+	}*/
 }
