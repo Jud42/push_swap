@@ -1,6 +1,6 @@
 # push_swap
 ## Introduction
-push_swap is an exercise in sorting algorithms, you have at your disposal a set of ***integers***, ***two stacks*** and a set of ***instructions*** to manipulate them.
+push_swap is a sorting algorithms exercices, you have at your disposal a set of ***integers***, ***two stacks*** and a set of ***instructions*** to manipulate them.
 The goal of this project is to understand the complexity of algorithms and sort the stacks using the minimum amount of instructions possible.
 
 >**Program name** | push_swap
