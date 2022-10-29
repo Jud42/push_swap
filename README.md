@@ -12,7 +12,7 @@ The goal of this project is to understand the complexity of algorithms and sort 
 **Descriptions** | Sort the stacks
 
 ### Integers
-give randomly
+randomly
 ### Stacks
 at the beginning:
 1.  **stack a**
@@ -22,8 +22,7 @@ at the beginning:
 	is empty.
 
 ### Instructions
-The goal of the game is to sort the numbers in **stack a** in ascending order. For this
-do, we have the following instructions:
+The goal of the game is to sort the numbers in **stack a** in ascending order. For this, we have the following instructions:
 
 **Instructions** |                          **Actions**
 ---- | ----
@@ -90,7 +89,7 @@ In the case where the **flag** is equal to **B** , the procedures are somewhat s
 ##### find_middle & max_min_value (in file appointed utils) 
 fuction for size less than 6
 ###### max_value()
-We go through the list from the head to the last by comparing the position (if a < b then a = b ; if (a < c , a = c ...) until we find the largest value.
+We go through the list from the head(top) to the last(bottom) by comparing the position (if a < b then a = b ; if (a < c , a = c ...) until we find the largest value.
 ###### min_value()
 inverse of max_value() (if a > b then a = b so on) ...
 ###### mid_five_sort()
@@ -162,9 +161,9 @@ else
 }
 }
 ```
-once out of part_b(), we call **sort_a()** to sort what was sent in **A**, giving as size the number of (**pa**-**ra**)
+once out of part_b(), we call **sort_a()** to sort what was sent in **A**, giving for size the number of (**pa**-**ra**)
 And if there are more **ra** than **rb** we do **rra** **stack A** otherwise **rrb** in **stack B**
-We send to the function **sort_a** as size the **ra** and after we do the same thing by calling **sort_b** sends **rb** as size in argument,
+We send to the function **sort_a** as size the **ra** and after we do the same thing by calling **sort_b** sends **rb** for size in argument,
 so **sort_b** repeats the same process calling itself until the size is below 6...
 
 #### illustration part_a()
